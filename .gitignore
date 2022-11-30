@@ -3,7 +3,7 @@
 # dependencies
 /node_modules
 /.pnp
-/.idea
+**.idea/**
 package-lock.json
 .pnp.js
 
