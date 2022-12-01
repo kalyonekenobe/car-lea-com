@@ -228,7 +228,7 @@
     }
   }
 
-  .cars-categories-section {
+  section {
 
     h2 {
       font-family: $oswald;
@@ -246,6 +246,9 @@
         background: $color-red;
       }
     }
+  }
+
+  .cars-categories-section {
 
     .categories-list {
       display: grid;
@@ -316,6 +319,29 @@
             padding: 7px 50px;
           }
         }
+      }
+    }
+  }
+
+  .about-section {
+    clear: both;
+
+    .content {
+      padding-inline: 20px;
+      text-align: center;
+
+      img {
+        max-width: 900px;
+        width: 100%;
+        margin: 0 auto 20px;
+        border-radius: $border-radius-small;
+        box-shadow: 0 0 10px -5px $color-black;
+      }
+
+      p {
+        font-size: 0.9rem;
+        text-indent: 40px;
+        text-align: justify;
       }
     }
   }
@@ -399,6 +425,16 @@
         }
       }
     }
+
+    .about-section {
+
+      .content {
+
+        p {
+          font-size: 1rem;
+        }
+      }
+    }
   }
 }
 
@@ -460,6 +496,18 @@
 
         .categories-list-item {
           height: 300px;
+        }
+      }
+    }
+
+    .about-section {
+
+      .content {
+
+        img {
+          margin-right: 20px;
+          margin-bottom: 15px;
+          float: left;
         }
       }
     }

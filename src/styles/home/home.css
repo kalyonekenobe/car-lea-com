@@ -158,12 +158,12 @@
       .home .home-header .header-content p {
         font-size: 0.9rem;
         margin-bottom: 50px; }
-  .home .cars-categories-section h2 {
+  .home section h2 {
     font-family: "Oswald", sans-serif;
     text-align: center;
     font-size: 2rem;
     margin-top: 30px; }
-    .home .cars-categories-section h2::after {
+    .home section h2::after {
       content: '';
       width: 100%;
       max-width: 250px;
@@ -223,6 +223,21 @@
           margin-bottom: 20px; }
         .home .cars-categories-section .categories-list .categories-list-item .content a.button {
           padding: 7px 50px; }
+  .home .about-section {
+    clear: both; }
+    .home .about-section .content {
+      padding-inline: 20px;
+      text-align: center; }
+      .home .about-section .content img {
+        max-width: 900px;
+        width: 100%;
+        margin: 0 auto 20px;
+        border-radius: 3px;
+        box-shadow: 0 0 10px -5px #171717; }
+      .home .about-section .content p {
+        font-size: 0.9rem;
+        text-indent: 40px;
+        text-align: justify; }
 
 @media screen and (min-width: 425px) {
   .home .cars-categories-section .categories-list .categories-list-item {
@@ -251,7 +266,9 @@
         font-size: 2rem; }
       .home .cars-categories-section .categories-list .categories-list-item .content a.button {
         font-size: 1.2rem;
-        padding: 7px 50px; } }
+        padding: 7px 50px; }
+  .home .about-section .content p {
+    font-size: 1rem; } }
 @media screen and (min-width: 1024px) {
   .home .home-header .navigation-container .link-group .navigation {
     display: flex; }
@@ -268,6 +285,10 @@
   .home .cars-categories-section .categories-list {
     grid-template-columns: repeat(3, 1fr); }
     .home .cars-categories-section .categories-list .categories-list-item {
-      height: 300px; } }
+      height: 300px; }
+  .home .about-section .content img {
+    margin-right: 20px;
+    margin-bottom: 15px;
+    float: left; } }
 
 /*# sourceMappingURL=home.css.map */
