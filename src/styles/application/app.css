@@ -1,3 +1,86 @@
+body::-webkit-scrollbar {
+  width: 0;
+  height: 0; }
 
+body {
+  font-family: "Nunito", sans-serif;
+  font-size: 1rem;
+  overflow-x: hidden;
+  background: #EDEDED; }
+
+.mobile-menu {
+  display: flex;
+  flex-direction: column;
+  background: #171717;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%; }
+  .mobile-menu header {
+    color: #EDEDED;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px; }
+    .mobile-menu header h3 {
+      font-size: 1.3rem; }
+    .mobile-menu header svg {
+      font-size: 1.5rem;
+      margin-right: 5px;
+      cursor: pointer; }
+  .mobile-menu nav {
+    display: flex;
+    flex-direction: column;
+    padding: 30px 10px; }
+    .mobile-menu nav a {
+      padding: 15px 10px;
+      margin-block: 2px;
+      text-align: center;
+      text-decoration: none;
+      color: #EDEDED;
+      cursor: pointer;
+      border-radius: 3px;
+      transition: 0.3s ease; }
+      .mobile-menu nav a:hover, .mobile-menu nav a.active {
+        background: #EDEDED;
+        color: #171717; }
+
+.button {
+  padding: 10px 30px;
+  font-family: "Nunito", sans-serif;
+  font-size: 1rem;
+  text-decoration: none;
+  cursor: pointer;
+  transition: 0.3s ease;
+  border-radius: 3px;
+  text-align: center;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center; }
+
+.button-white {
+  background: #EDEDED;
+  color: #171717; }
+  .button-white:hover {
+    background: #D6E0F0; }
+
+.button-red {
+  background: #DA0037;
+  color: #EDEDED; }
+  .button-red:hover {
+    background: #CE1212; }
+
+.button-black {
+  background: #171717;
+  color: #EDEDED; }
+  .button-black:hover {
+    background: #444444; }
+
+.button-gray {
+  background: #444444;
+  color: #EDEDED; }
+  .button-gray:hover {
+    background: #706C61; }
 
 /*# sourceMappingURL=app.css.map */
