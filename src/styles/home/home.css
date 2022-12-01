@@ -4,7 +4,7 @@
     height: 100vh;
     user-select: none; }
     .home .home-header .navigation-container {
-      z-index: 3;
+      z-index: 100;
       display: flex;
       justify-content: space-between;
       position: fixed;
@@ -158,7 +158,80 @@
       .home .home-header .header-content p {
         font-size: 0.9rem;
         margin-bottom: 50px; }
+  .home .cars-categories-section h2 {
+    font-family: "Oswald", sans-serif;
+    text-align: center;
+    font-size: 2rem;
+    margin-top: 30px; }
+    .home .cars-categories-section h2::after {
+      content: '';
+      width: 100%;
+      max-width: 250px;
+      height: 3px;
+      margin: 10px auto 30px;
+      display: flex;
+      background: #DA0037; }
+  .home .cars-categories-section .categories-list {
+    display: grid;
+    grid-template-columns: 1fr; }
+    .home .cars-categories-section .categories-list .categories-list-item {
+      background: #EDEDED;
+      box-shadow: 0 0 10px -5px #171717;
+      position: relative;
+      overflow: hidden;
+      height: 250px; }
+      .home .cars-categories-section .categories-list .categories-list-item:hover {
+        cursor: pointer; }
+        .home .cars-categories-section .categories-list .categories-list-item:hover img {
+          transform: scale(1.1); }
+      .home .cars-categories-section .categories-list .categories-list-item .image-wrapper {
+        height: 100%; }
+        .home .cars-categories-section .categories-list .categories-list-item .image-wrapper img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          position: relative;
+          z-index: 1;
+          transition: 0.3s ease; }
+        .home .cars-categories-section .categories-list .categories-list-item .image-wrapper::after {
+          content: '';
+          display: flex;
+          width: 100%;
+          height: 100%;
+          left: 0;
+          top: 0;
+          background: #171717;
+          position: absolute;
+          z-index: 2;
+          opacity: 0.5; }
+      .home .cars-categories-section .categories-list .categories-list-item .content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        z-index: 3;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0; }
+        .home .cars-categories-section .categories-list .categories-list-item .content h3 {
+          font-weight: bold;
+          font-family: "Raleway", sans-serif;
+          font-size: 1.5rem;
+          color: #EDEDED;
+          margin-bottom: 20px; }
+        .home .cars-categories-section .categories-list .categories-list-item .content a.button {
+          padding: 7px 50px; }
 
+@media screen and (min-width: 425px) {
+  .home .cars-categories-section .categories-list .categories-list-item {
+    height: 400px; }
+    .home .cars-categories-section .categories-list .categories-list-item .content h3 {
+      font-size: 2.5rem; }
+    .home .cars-categories-section .categories-list .categories-list-item .content a.button {
+      font-size: 1.2rem;
+      padding: 10px 70px; } }
 @media screen and (min-width: 768px) {
   .home .home-header .header-content h1 {
     font-size: 5rem; }
@@ -169,17 +242,32 @@
     max-width: 500px; }
   .home .home-header .header-content .button {
     font-size: 1.4rem;
-    padding: 12px 70px; } }
+    padding: 12px 70px; }
+  .home .cars-categories-section .categories-list {
+    grid-template-columns: repeat(2, 1fr); }
+    .home .cars-categories-section .categories-list .categories-list-item {
+      height: 250px; }
+      .home .cars-categories-section .categories-list .categories-list-item .content h3 {
+        font-size: 2rem; }
+      .home .cars-categories-section .categories-list .categories-list-item .content a.button {
+        font-size: 1.2rem;
+        padding: 7px 50px; } }
 @media screen and (min-width: 1024px) {
   .home .home-header .navigation-container .link-group .navigation {
     display: flex; }
   .home .home-header .navigation-container .show-burger-menu {
-    display: none; } }
+    display: none; }
+  .home .cars-categories-section .categories-list .categories-list-item {
+    height: 350px; } }
 @media screen and (min-width: 1440px) {
   .home .home-header .header-content p {
     font-size: 1.2rem;
     max-width: 700px; }
   .home .home-header .header-content .button {
-    padding: 12px 100px; } }
+    padding: 12px 100px; }
+  .home .cars-categories-section .categories-list {
+    grid-template-columns: repeat(3, 1fr); }
+    .home .cars-categories-section .categories-list .categories-list-item {
+      height: 300px; } }
 
 /*# sourceMappingURL=home.css.map */
