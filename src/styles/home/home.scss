@@ -475,6 +475,38 @@
       }
     }
   }
+
+  .gallery-section {
+
+    .gallery-container {
+      padding-inline: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+
+      img {
+        width: 300px;
+        height: 300px;
+        object-fit: cover;
+        border-radius: $border-radius-small;
+        box-shadow: 0 0 10px -5px $color-black;
+        transition: $default-transition;
+        cursor: pointer;
+        margin: 10px;
+
+        &:hover {
+          transform: scale(1.05);
+          box-shadow: 0 0 20px -10px $color-black;
+        }
+      }
+
+      &::after {
+        content: '';
+        display: block;
+        clear: both;
+      }
+    }
+  }
 }
 
 @media screen and (min-width: 425px) {

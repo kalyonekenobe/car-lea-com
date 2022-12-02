@@ -326,6 +326,27 @@
               justify-content: flex-end;
               margin-left: 10px;
               content: "”"; }
+  .home .gallery-section .gallery-container {
+    padding-inline: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; }
+    .home .gallery-section .gallery-container img {
+      width: 300px;
+      height: 300px;
+      object-fit: cover;
+      border-radius: 3px;
+      box-shadow: 0 0 10px -5px #171717;
+      transition: 0.3s ease;
+      cursor: pointer;
+      margin: 10px; }
+      .home .gallery-section .gallery-container img:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 20px -10px #171717; }
+    .home .gallery-section .gallery-container::after {
+      content: '';
+      display: block;
+      clear: both; }
 
 @media screen and (min-width: 425px) {
   .home .cars-categories-section .categories-list .categories-list-item {
