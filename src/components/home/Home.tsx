@@ -2,6 +2,8 @@ import {FC} from "react";
 import '../../styles/home/home.css';
 import {Header} from "./Header";
 import {Link} from "react-router-dom";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faChevronLeft, faChevronRight} from "@fortawesome/free-solid-svg-icons";
 
 export const Home: FC = () => {
 
@@ -117,6 +119,75 @@ export const Home: FC = () => {
           <p>
             Facilisi etiam dignissim diam quis. Facilisi nullam vehicula ipsum a arcu cursus vitae congue mauris. Nisl suscipit adipiscing bibendum est ultricies integer quis. Varius vel pharetra vel turpis nunc eget lorem. Malesuada pellentesque elit eget gravida cum sociis natoque. Lacinia quis vel eros donec. Facilisis gravida neque convallis a cras semper. Et tortor at risus viverra adipiscing at in tellus integer. Sed velit dignissim sodales ut eu sem integer vitae justo. Volutpat est velit egestas dui id ornare. Lacus luctus accumsan tortor posuere ac ut. Elit scelerisque mauris pellentesque pulvinar pellentesque. Id ornare arcu odio ut. Enim nec dui nunc mattis enim. Mauris vitae ultricies leo integer malesuada nunc vel risus commodo.
           </p>
+        </div>
+      </section>
+      <section className={"feedbacks-section"}>
+        <h2>Feedbacks</h2>
+        <div className={"feedbacks-container"}>
+          <div className={"controls left-arrow"}>
+            <FontAwesomeIcon icon={faChevronLeft} />
+          </div>
+          <div className={"feedbacks"}>
+            <div className={"feedback"}>
+              <header>
+                <img src={`${process.env.PUBLIC_URL}/images/coupe.jpg`} alt={"User image"} />
+                <h3>Oleksandr Igumnov</h3>
+                <span>Junior C++ Developer</span>
+              </header>
+              <div className={"content"}>
+                <blockquote>
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                  </p>
+                </blockquote>
+              </div>
+            </div>
+            <div className={"feedback"}>
+              <header>
+                <img src={`${process.env.PUBLIC_URL}/images/coupe.jpg`} alt={"User image"} />
+                <h3>Oleksandr Igumnov</h3>
+                <span>Junior C++ Developer</span>
+              </header>
+              <div className={"content"}>
+                <blockquote>
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                  </p>
+                </blockquote>
+              </div>
+            </div>
+            <div className={"feedback"}>
+              <header>
+                <img src={`${process.env.PUBLIC_URL}/images/coupe.jpg`} alt={"User image"} />
+                <h3>Oleksandr Igumnov</h3>
+                <span>Junior C++ Developer</span>
+              </header>
+              <div className={"content"}>
+                <blockquote>
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                  </p>
+                </blockquote>
+              </div>
+            </div>
+            <div className={"feedback"}>
+              <header>
+                <img src={`${process.env.PUBLIC_URL}/images/coupe.jpg`} alt={"User image"} />
+                <h3>Oleksandr Igumnov</h3>
+                <span>Junior C++ Developer</span>
+              </header>
+              <div className={"content"}>
+                <blockquote>
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                  </p>
+                </blockquote>
+              </div>
+            </div>
+          </div>
+          <div className={"controls right-arrow"}>
+            <FontAwesomeIcon icon={faChevronRight} />
+          </div>
         </div>
       </section>
     </main>

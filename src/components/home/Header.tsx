@@ -1,5 +1,7 @@
 import {FC} from "react";
 import {Navbar} from "../application/Navbar";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faAnglesDown} from "@fortawesome/free-solid-svg-icons";
 
 export const Header: FC = () => {
   return (
@@ -18,6 +20,10 @@ export const Header: FC = () => {
           The best car lessor in Ukraine. It has more than 10000 cars of different brands of manufacturers from all over the world.
         </p>
         <span className={"button button-red"}>Search for a car</span>
+        <div className={"scroll-down-message"}>
+          <span>Scroll down</span>
+          <FontAwesomeIcon icon={faAnglesDown} />
+        </div>
       </div>
     </header>
   )
