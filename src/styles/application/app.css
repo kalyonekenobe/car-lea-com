@@ -1,3 +1,231 @@
+body::-webkit-scrollbar {
+  width: 0;
+  height: 0; }
 
+body {
+  font-family: "Nunito", sans-serif;
+  font-size: 1rem;
+  overflow-x: hidden;
+  background: #EDEDED; }
+
+.application .mobile-menu {
+  display: flex;
+  flex-direction: column;
+  background: #171717;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%; }
+  .application .mobile-menu header {
+    color: #EDEDED;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px; }
+    .application .mobile-menu header h3 {
+      font-size: 1.3rem; }
+    .application .mobile-menu header svg {
+      font-size: 1.5rem;
+      margin-right: 5px;
+      cursor: pointer; }
+  .application .mobile-menu .navigation-link-container {
+    position: relative;
+    display: flex;
+    flex-direction: column; }
+    .application .mobile-menu .navigation-link-container svg {
+      color: #EDEDED;
+      position: absolute;
+      font-size: 1.5rem;
+      right: 0;
+      top: 2px;
+      padding: 10px 15px; }
+    .application .mobile-menu .navigation-link-container svg:hover + .submenu, .application .mobile-menu .navigation-link-container .submenu:hover {
+      display: flex;
+      flex-direction: column; }
+    .application .mobile-menu .navigation-link-container .submenu {
+      margin-top: 10px;
+      display: none;
+      background: #444444;
+      border-radius: 3px; }
+      .application .mobile-menu .navigation-link-container .submenu > a {
+        font-size: 0.9rem;
+        padding: 10px 20px; }
+  .application .mobile-menu nav {
+    display: flex;
+    flex-direction: column;
+    padding: 30px 10px; }
+    .application .mobile-menu nav a {
+      padding: 15px 10px;
+      margin-block: 2px;
+      text-align: center;
+      text-decoration: none;
+      color: #EDEDED;
+      cursor: pointer;
+      border-radius: 3px;
+      transition: 0.3s ease; }
+      .application .mobile-menu nav a:hover, .application .mobile-menu nav a.active {
+        background: #EDEDED;
+        color: #171717; }
+        .application .mobile-menu nav a:hover + svg, .application .mobile-menu nav a.active + svg {
+          color: #171717; }
+.application .button {
+  padding: 10px 30px;
+  font-family: "Nunito", sans-serif;
+  font-size: 1rem;
+  text-decoration: none;
+  cursor: pointer;
+  transition: 0.3s ease;
+  border-radius: 3px;
+  text-align: center;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center; }
+.application .button-white {
+  background: #EDEDED;
+  color: #171717; }
+  .application .button-white:hover {
+    background: #D6E0F0; }
+.application .button-red {
+  background: #DA0037;
+  color: #EDEDED; }
+  .application .button-red:hover {
+    background: #CE1212; }
+.application .button-black {
+  background: #171717;
+  color: #EDEDED; }
+  .application .button-black:hover {
+    background: #444444; }
+.application .button-gray {
+  background: #444444;
+  color: #EDEDED; }
+  .application .button-gray:hover {
+    background: #706C61; }
+.application .navigation-container {
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+  padding: 10px;
+  transition: 0.3s ease;
+  top: 0;
+  left: 0;
+  right: 0; }
+  .application .navigation-container .window-scroll-percentage {
+    display: flex;
+    position: absolute;
+    left: 0;
+    bottom: -1px;
+    background: #DA0037;
+    width: 100%;
+    height: 3px; }
+  .application .navigation-container.white {
+    background: #EDEDED;
+    border-bottom: 1px solid #DDDDDD; }
+    .application .navigation-container.white .show-burger-menu {
+      color: #171717;
+      border: 1px solid #171717; }
+    .application .navigation-container.white .link-group .navigation a.link {
+      color: #171717; }
+    .application .navigation-container.white .link-group .navigation .delimiter::after {
+      background: #171717; }
+  .application .navigation-container .link-group {
+    display: inline-flex;
+    align-items: center; }
+    .application .navigation-container .link-group a.button {
+      padding: 7px 20px;
+      margin-right: 10px; }
+    .application .navigation-container .link-group .navigation {
+      display: none;
+      width: 100%;
+      align-items: center;
+      position: relative; }
+      .application .navigation-container .link-group .navigation .navigation-link-container {
+        position: relative;
+        top: 0; }
+        .application .navigation-container .link-group .navigation .navigation-link-container:hover {
+          height: calc(1rem + 15px);
+          top: 2px; }
+          .application .navigation-container .link-group .navigation .navigation-link-container:hover .submenu {
+            display: flex; }
+      .application .navigation-container .link-group .navigation .submenu {
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        background: #EDEDED;
+        max-width: 200px;
+        width: 200%;
+        position: absolute;
+        z-index: 3;
+        padding: 5px;
+        border-radius: 3px;
+        margin: 5px;
+        box-shadow: 0 0 10px -5px #171717; }
+        .application .navigation-container .link-group .navigation .submenu:hover {
+          display: flex; }
+        .application .navigation-container .link-group .navigation .submenu a {
+          text-decoration: none;
+          color: #171717;
+          transition: 0.3s ease;
+          padding: 7px 15px;
+          border-radius: 3px;
+          position: relative;
+          font-size: 0.9rem; }
+          .application .navigation-container .link-group .navigation .submenu a:hover {
+            color: #DA0037;
+            background: #DDDDDD; }
+      .application .navigation-container .link-group .navigation a.link {
+        color: #EDEDED;
+        text-decoration: none;
+        transition: 0.3s ease;
+        font-size: 1rem;
+        display: inline-flex;
+        padding: 5px 20px;
+        margin-inline: 5px;
+        position: relative;
+        border-radius: 3px; }
+        .application .navigation-container .link-group .navigation a.link.logo {
+          font-weight: bold;
+          font-size: 1.5rem; }
+        .application .navigation-container .link-group .navigation a.link:hover + .submenu {
+          display: flex; }
+        .application .navigation-container .link-group .navigation a.link:hover {
+          color: #DA0037;
+          background: #DDDDDD; }
+      .application .navigation-container .link-group .navigation .delimiter::after {
+        content: '';
+        display: inline-flex;
+        border-radius: 3px;
+        width: 2px;
+        height: 1rem;
+        background: #EDEDED; }
+  .application .navigation-container .show-burger-menu {
+    color: #EDEDED;
+    font-size: 1.5rem;
+    align-items: center;
+    border: 1px solid #EDEDED;
+    display: inline-flex;
+    padding: 5px 10px;
+    border-radius: 3px;
+    transition: 0.3s ease;
+    cursor: pointer; }
+    .application .navigation-container .show-burger-menu:hover {
+      color: #171717;
+      background: #EDEDED; }
+.application footer {
+  margin-top: 30px;
+  background: #171717;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #EDEDED;
+  text-align: center;
+  padding: 20px; }
+
+@media screen and (min-width: 1024px) {
+  .application .navigation-container .link-group .navigation {
+    display: flex; }
+  .application .navigation-container .show-burger-menu {
+    display: none; } }
 
 /*# sourceMappingURL=app.css.map */
