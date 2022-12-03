@@ -8,7 +8,7 @@ body {
   overflow-x: hidden;
   background: #EDEDED; }
 
-.mobile-menu {
+.application .mobile-menu {
   display: flex;
   flex-direction: column;
   background: #171717;
@@ -17,23 +17,45 @@ body {
   left: 0;
   width: 100%;
   height: 100%; }
-  .mobile-menu header {
+  .application .mobile-menu header {
     color: #EDEDED;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 10px; }
-    .mobile-menu header h3 {
+    .application .mobile-menu header h3 {
       font-size: 1.3rem; }
-    .mobile-menu header svg {
+    .application .mobile-menu header svg {
       font-size: 1.5rem;
       margin-right: 5px;
       cursor: pointer; }
-  .mobile-menu nav {
+  .application .mobile-menu .navigation-link-container {
+    position: relative;
+    display: flex;
+    flex-direction: column; }
+    .application .mobile-menu .navigation-link-container svg {
+      color: #EDEDED;
+      position: absolute;
+      font-size: 1.5rem;
+      right: 0;
+      top: 2px;
+      padding: 10px 15px; }
+    .application .mobile-menu .navigation-link-container svg:hover + .submenu, .application .mobile-menu .navigation-link-container .submenu:hover {
+      display: flex;
+      flex-direction: column; }
+    .application .mobile-menu .navigation-link-container .submenu {
+      margin-top: 10px;
+      display: none;
+      background: #444444;
+      border-radius: 3px; }
+      .application .mobile-menu .navigation-link-container .submenu > a {
+        font-size: 0.9rem;
+        padding: 10px 20px; }
+  .application .mobile-menu nav {
     display: flex;
     flex-direction: column;
     padding: 30px 10px; }
-    .mobile-menu nav a {
+    .application .mobile-menu nav a {
       padding: 15px 10px;
       margin-block: 2px;
       text-align: center;
@@ -42,11 +64,12 @@ body {
       cursor: pointer;
       border-radius: 3px;
       transition: 0.3s ease; }
-      .mobile-menu nav a:hover, .mobile-menu nav a.active {
+      .application .mobile-menu nav a:hover, .application .mobile-menu nav a.active {
         background: #EDEDED;
         color: #171717; }
-
-.button {
+        .application .mobile-menu nav a:hover + svg, .application .mobile-menu nav a.active + svg {
+          color: #171717; }
+.application .button {
   padding: 10px 30px;
   font-family: "Nunito", sans-serif;
   font-size: 1rem;
@@ -58,29 +81,34 @@ body {
   display: inline-flex;
   justify-content: center;
   align-items: center; }
-
-.button-white {
+.application .button-white {
   background: #EDEDED;
   color: #171717; }
-  .button-white:hover {
+  .application .button-white:hover {
     background: #D6E0F0; }
-
-.button-red {
+.application .button-red {
   background: #DA0037;
   color: #EDEDED; }
-  .button-red:hover {
+  .application .button-red:hover {
     background: #CE1212; }
-
-.button-black {
+.application .button-black {
   background: #171717;
   color: #EDEDED; }
-  .button-black:hover {
+  .application .button-black:hover {
     background: #444444; }
-
-.button-gray {
+.application .button-gray {
   background: #444444;
   color: #EDEDED; }
-  .button-gray:hover {
+  .application .button-gray:hover {
     background: #706C61; }
+.application footer {
+  margin-top: 30px;
+  background: #171717;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #EDEDED;
+  text-align: center;
+  padding: 20px; }
 
 /*# sourceMappingURL=app.css.map */

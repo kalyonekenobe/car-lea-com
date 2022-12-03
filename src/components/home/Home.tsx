@@ -205,6 +205,9 @@ export const Home: FC = () => {
           <img src={`${process.env.PUBLIC_URL}/images/gallery_10.jpg`} alt={"Salon image"} />
         </div>
       </section>
+      <footer>
+        <p>Copyright © 2022 CarLeaCom. All rights reserved </p>
+      </footer>
     </main>
   )
 }
