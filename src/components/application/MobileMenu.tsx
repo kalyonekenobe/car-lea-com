@@ -5,7 +5,7 @@ import {faCaretDown, faXmark} from "@fortawesome/free-solid-svg-icons";
 import {MobileMenuPropsType} from "../../types/application/application.types";
 
 export const MobileMenu: FC<MobileMenuPropsType> = (props) => {
-
+  const location = window.location.pathname;
   const {close} = props;
 
   return (
@@ -15,23 +15,41 @@ export const MobileMenu: FC<MobileMenuPropsType> = (props) => {
         <FontAwesomeIcon icon={faXmark} onClick={() => close()} />
       </header>
       <nav className={"navigation"}>
-        <Link to={"/"} replace={true} className={"active"}>Home</Link>
+        <Link to={"/"} replace={true} className={location === '/' ? "active" : ""}>Home</Link>
         <div className={"navigation-link-container"}>
-          <Link to={"/cars"} replace={true} >Cars</Link>
+          <Link to={"/cars"} replace={true} className={location === '/cars' ? "active" : ""}>Cars</Link>
           <FontAwesomeIcon icon={faCaretDown} />
           <div className={"submenu cars-submenu"}>
-            <Link to={"/cars/hatchbacks"} replace={true}>Hatchbacks</Link>
-            <Link to={"/cars/sedans"} replace={true}>Sedans</Link>
-            <Link to={"/cars/wagons"} replace={true}>Wagons</Link>
-            <Link to={"/cars/convertibles"} replace={true}>Convertibles</Link>
-            <Link to={"/cars/coupes"} replace={true}>Coupes</Link>
-            <Link to={"/cars/suvs"} replace={true}>SUVs</Link>
-            <Link to={"/cars/pickups"} replace={true}>Pick Ups</Link>
-            <Link to={"/cars/vans"} replace={true}>VANs</Link>
-            <Link to={"/cars/jeeps"} replace={true}>Jeeps</Link>
+            <Link to={"/cars/hatchbacks"} replace={true} className={location === '/cars/hatchbacks' ? "active" : ""}>
+              Hatchbacks
+            </Link>
+            <Link to={"/cars/sedans"} replace={true} className={location === '/cars/sedans' ? "active" : ""}>
+              Sedans
+            </Link>
+            <Link to={"/cars/wagons"} replace={true} className={location === '/cars/wagons' ? "active" : ""}>
+              Wagons
+            </Link>
+            <Link to={"/cars/convertibles"} replace={true} className={location === '/cars/convertibles' ? "active" : ""}>
+              Convertibles
+            </Link>
+            <Link to={"/cars/coupes"} replace={true} className={location === '/cars/coupes' ? "active" : ""}>
+              Coupes
+            </Link>
+            <Link to={"/cars/suvs"} replace={true} className={location === '/cars/suvs' ? "active" : ""}>
+              SUVs
+            </Link>
+            <Link to={"/cars/pickups"} replace={true} className={location === '/cars/pickups' ? "active" : ""}>
+              Pick Ups
+            </Link>
+            <Link to={"/cars/vans"} replace={true} className={location === '/cars/vans' ? "active" : ""}>
+              VANs
+            </Link>
+            <Link to={"/cars/jeeps"} replace={true} className={location === '/cars/jeeps' ? "active" : ""}>
+              Jeeps
+            </Link>
           </div>
         </div>
-        <Link to={"/contacts"} replace={true}>Contacts</Link>
+        <Link to={"/contacts"} replace={true} className={location === '/contacts' ? "active" : ""}>Contacts</Link>
       </nav>
     </div>
   )
