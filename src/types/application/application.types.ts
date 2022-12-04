@@ -7,3 +7,8 @@ export type NavbarStateType = {
   navbarTheme: string,
   windowScrollPercentage: number
 }
+
+export type NavbarPropsType = {
+  navbarTheme?: string,
+  changeNavbarThemeCheckpoint?: number
+}

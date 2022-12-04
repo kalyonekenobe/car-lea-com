@@ -12,7 +12,7 @@ export const Header: FC = () => {
           <source src={`${process.env.PUBLIC_URL}/images/homepage-header-video.mp4`} type={"video/mp4"} />
         </video>
       </div>
-      <Navbar />
+      <Navbar changeNavbarThemeCheckpoint={100} navbarTheme={"white"} />
       <div className={"header-content"}>
         <h1>CarLeaCom</h1>
         <h2>Car leasing company</h2>
