@@ -62,7 +62,7 @@ body {
       }
 
       .submenu {
-        margin-top: 10px;
+        margin-block: 10px;
         display: none;
         background: $color-gray;
         border-radius: $border-radius-small;
@@ -115,6 +115,8 @@ body {
     display: inline-flex;
     justify-content: center;
     align-items: center;
+    outline: none;
+    border: none;
   }
 
   .button-white {
@@ -160,6 +162,7 @@ body {
     position: fixed;
     padding: 10px;
     transition: $default-transition;
+    font-family: $nunito;
     top: 0;
     left: 0;
     right: 0;
@@ -324,6 +327,62 @@ body {
     color: $color-white;
     text-align: center;
     padding: 20px;
+    position: relative;
+    bottom: 0;
+  }
+}
+
+.form-container {
+
+  .form-heading {
+    font-family: $oswald;
+    font-size: 1.5rem;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  form {
+
+    .form-group {
+      display: flex;
+
+      .form-item {
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+        font-size: 1rem;
+
+        label {
+          width: 100%;
+          margin-bottom: 5px;
+        }
+
+        input:not([type="checkbox"]),
+        input:not([type="radio"]),
+        input:not([type="submit"]),
+        textarea,
+        select {
+          width: 100%;
+          padding: 10px;
+          border: 1px solid $color-silver;
+          border-radius: $border-radius-small;
+          font-family: $nunito;
+          outline: none;
+          font-size: 0.9rem;
+        }
+
+        textarea {
+          resize: vertical;
+          min-height: 150px;
+        }
+
+        .submit-button {
+          border: none !important;
+          margin-top: 15px;
+          font-size: 1.1rem !important;
+        }
+      }
+    }
   }
 }
 

@@ -3,7 +3,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faBars} from "@fortawesome/free-solid-svg-icons";
 import {Link} from "react-router-dom";
 import {MobileMenu} from "./MobileMenu";
-import {NavbarStateType} from "../../types/application/application.types";
+import {NavbarPropsType, NavbarStateType} from "../../types/application/application.types";
 
 const initialState: NavbarStateType = {
   mobileMenuIsVisible: false,
@@ -11,19 +11,21 @@ const initialState: NavbarStateType = {
   windowScrollPercentage: 0
 }
 
-export const Navbar: FC = () => {
+export const Navbar: FC<NavbarPropsType> = props => {
+  const {navbarTheme, changeNavbarThemeCheckpoint} = props;
   const [state, setState] = useState(initialState);
 
   useEffect(() => {
     window.addEventListener('scroll', () => handleScroll());
+    handleScroll();
   }, [])
 
   const handleScroll = () => {
     let theme = state.navbarTheme;
     let scrollPercentage = window.scrollY / (document.body.clientHeight - window.innerHeight) * 100;
-    if (window.scrollY > 100 && theme !== 'white')
-      theme = "white";
-    if (window.scrollY <= 100 && theme !== '')
+    if (window.scrollY >= (changeNavbarThemeCheckpoint ?? 0) && theme !== navbarTheme)
+      theme = navbarTheme ?? '';
+    if (window.scrollY < (changeNavbarThemeCheckpoint ?? 0) && theme !== '')
       theme = "";
     setState({
       ...state,
