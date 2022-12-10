@@ -386,7 +386,57 @@ body {
   }
 }
 
-@media screen and (min-width: 1024px) {
+.selector {
+  border-radius: $border-radius-small;
+  cursor: pointer;
+  background: $color-default-white;
+  border: 1px solid $color-silver;
+  user-select: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+
+  > span {
+    width: 100%;
+    padding: 10px;
+    position: relative;
+    z-index: 2;
+  }
+
+  svg.sort-down-icon {
+    margin-top: -3px;
+    margin-bottom: 3px;
+    position: absolute;
+    right: 10px;
+    z-index: 1;
+  }
+
+  .option-list {
+    padding: 5px;
+    position: absolute;
+    top: calc(100% + 5px);
+    left: 0;
+    border-radius: $border-radius-small;
+    background: $color-default-white;
+    border: 1px solid $color-silver;
+    width: 100%;
+    box-sizing: border-box;
+
+    > div {
+      padding: 5px;
+      border-radius: $border-radius-small;
+      transition: $default-transition;
+
+      &:hover {
+        background: $color-silver;
+        color: $color-red;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: $laptop-screen) {
 
   .application {
 

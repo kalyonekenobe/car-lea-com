@@ -2,15 +2,7 @@ import {FC, useState} from "react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faXmark} from "@fortawesome/free-solid-svg-icons";
 import {Checkbox, FormControlLabel, Slider, Switch} from "@mui/material";
-
-export type CarsSidebarStateType = {
-  availableNow: boolean,
-  pricePerDay: {
-    min: number,
-    max: number,
-    value: number | number[]
-  }
-}
+import {CarsSidebarPropsType, CarsSidebarStateType} from "../../types/cars/cars.types";
 
 const initialState: CarsSidebarStateType = {
   availableNow: true,
@@ -21,17 +13,18 @@ const initialState: CarsSidebarStateType = {
   }
 }
 
-export const Sidebar: FC = () => {
+export const Sidebar: FC<CarsSidebarPropsType> = props => {
   const [state, setState] = useState(initialState);
+  const {hideSidebar} = props;
 
   return (
     <aside className={"sidebar"}>
       <header className={"sidebar-section sidebar-header"}>
         <h3>Filters</h3>
-        <span className={"close-sidebar-button"}>
-              <FontAwesomeIcon icon={faXmark} />
-              <p>Close</p>
-            </span>
+        <span className={"close-sidebar-button"} onClick={() => hideSidebar()}>
+          <FontAwesomeIcon icon={faXmark} />
+          <p>Close</p>
+        </span>
       </header>
       <div className={"sidebar-section availability"}>
         <h4>Available now </h4>

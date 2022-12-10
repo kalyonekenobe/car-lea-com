@@ -12,3 +12,17 @@ export type NavbarPropsType = {
   navbarTheme?: string,
   changeNavbarThemeCheckpoint?: number
 }
+
+export type SelectorPropsType = {
+  options: SelectorOptionType[]
+}
+
+export type SelectorStateType = {
+  selectedOption?: SelectorOptionType,
+  optionListIsVisible: boolean
+}
+
+export type SelectorOptionType = {
+  name: string,
+  value?: any
+}
