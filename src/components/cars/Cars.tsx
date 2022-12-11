@@ -5,10 +5,15 @@ import "../../styles/cars/cars.css";
 import {Sidebar} from "./Sidebar";
 import {CarsSectionStateType} from "../../types/cars/cars.types";
 import {Filters} from "./Filters";
+import {Card} from "./Card";
+import {Pagination} from "../application/Pagination";
 
 const initialState: CarsSectionStateType = {
-  filtersSidebarIsVisible: true
+  filtersSidebarIsVisible: true,
+  activeContentPage: 1
 }
+
+const items = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
 
 export const Cars: FC = () => {
   const [state, setState] = useState(initialState);
@@ -24,8 +29,24 @@ export const Cars: FC = () => {
         <div className={`content-container`}>
           <Filters carsContainerState={[state, setState]} />
           <div className={"content"}>
-
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+            <Card />
           </div>
+          <Pagination items={items} itemsPerPage={1} numberOfButtons={3} />
         </div>
       </section>
       <Footer />

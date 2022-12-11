@@ -1,7 +1,8 @@
 import React from "react";
 
 export type CarsSectionStateType = {
-  filtersSidebarIsVisible: boolean
+  filtersSidebarIsVisible: boolean,
+  activeContentPage: number
 }
 
 export type CarsSidebarStateType = {

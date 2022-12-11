@@ -318,7 +318,7 @@ body {
     }
   }
 
-  footer {
+  .footer {
     margin-top: 30px;
     background: $color-black;
     display: flex;
@@ -326,7 +326,7 @@ body {
     align-items: center;
     color: $color-white;
     text-align: center;
-    padding: 20px;
+    padding: 10px;
     position: relative;
     bottom: 0;
   }
@@ -384,6 +384,46 @@ body {
       }
     }
   }
+}
+
+.pagination {
+  background: $color-default-white;
+  box-shadow: 0 0 10px -5px $color-black;
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+
+  .button-list {
+
+    span {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      padding: 10px;
+      background: $color-default-white;
+      color: $color-black;
+      border-radius: $border-radius-small;
+      cursor: pointer;
+      text-align: center;
+      width: 16px;
+      height: 16px;
+      user-select: none;
+
+      &.active {
+        color: $color-red;
+        background: $color-silver;
+      }
+
+      &:hover {
+        color: $color-red;
+      }
+
+      &:not(:last-child) {
+        margin-right: 5px;
+      }
+    }
+  }
+
 }
 
 .selector {

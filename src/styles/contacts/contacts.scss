@@ -3,6 +3,7 @@
 .contacts {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   padding-top: 56px;
   font-family: $nunito;
   min-height: 100vh;
@@ -40,7 +41,7 @@
     display: flex;
     align-items: stretch;
     flex-wrap: wrap;
-    height: 100%;
+    min-height: calc(100vh - 93px);
 
     .map-wrapper {
       width: 100%;
@@ -79,7 +80,7 @@
         }
 
         textarea {
-          min-height: 235px;
+          min-height: 255px;
           resize: none;
         }
       }
@@ -130,7 +131,7 @@
     }
   }
 
-  footer {
+  .footer {
     margin-top: 0;
   }
 }

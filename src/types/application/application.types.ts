@@ -26,3 +26,19 @@ export type SelectorOptionType = {
   name: string,
   value?: any
 }
+
+export type PaginationStateType = {
+  activePage: number,
+  visibleButtons: PaginationButtonType[],
+}
+
+export type PaginationButtonType = {
+  name: string,
+  number?: number
+}
+
+export type PaginationPropsType = {
+  itemsPerPage: number,
+  numberOfButtons: number,
+  items: any[],
+}

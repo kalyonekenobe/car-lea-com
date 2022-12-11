@@ -215,7 +215,7 @@ body {
     .application .navigation-container .show-burger-menu:hover {
       color: #171717;
       background: #EDEDED; }
-.application footer {
+.application .footer {
   margin-top: 30px;
   background: #171717;
   display: flex;
@@ -223,7 +223,7 @@ body {
   align-items: center;
   color: #EDEDED;
   text-align: center;
-  padding: 20px;
+  padding: 10px;
   position: relative;
   bottom: 0; }
 
@@ -261,6 +261,33 @@ body {
       border: none !important;
       margin-top: 15px;
       font-size: 1.1rem !important; }
+
+.pagination {
+  background: #FFFFFF;
+  box-shadow: 0 0 10px -5px #171717;
+  padding: 5px;
+  display: flex;
+  justify-content: center; }
+  .pagination .button-list span {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    background: #FFFFFF;
+    color: #171717;
+    border-radius: 3px;
+    cursor: pointer;
+    text-align: center;
+    width: 16px;
+    height: 16px;
+    user-select: none; }
+    .pagination .button-list span.active {
+      color: #DA0037;
+      background: #DDDDDD; }
+    .pagination .button-list span:hover {
+      color: #DA0037; }
+    .pagination .button-list span:not(:last-child) {
+      margin-right: 5px; }
 
 .selector {
   border-radius: 3px;

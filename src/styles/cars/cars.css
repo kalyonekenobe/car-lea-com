@@ -1,7 +1,7 @@
 .cars {
   font-family: "Nunito", sans-serif;
-  padding-top: 55px;
-  min-height: 100vh;
+  padding-top: 57px;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -10,11 +10,11 @@
     width: 100%;
     height: calc(100vh - 55px);
     position: absolute;
-    z-index: 3;
+    z-index: 8;
     padding: 10px 20px;
     display: none;
     flex-direction: column;
-    background: #EDEDED;
+    background: #FFFFFF;
     box-shadow: 0 0 10px -7px #171717;
     box-sizing: border-box;
     overflow-y: auto;
@@ -25,6 +25,7 @@
       align-items: center;
       width: 100%;
       padding-bottom: 10px;
+      max-height: 30px;
       border-bottom: 1px solid #DDDDDD; }
       .cars aside .sidebar-header.sidebar-section:not(:last-child) {
         margin-bottom: 15px; }
@@ -97,14 +98,44 @@
     .cars .cars-container .content-container {
       width: 100%;
       display: flex;
-      flex-direction: column; }
+      flex-direction: column;
+      height: calc(100vh - 91px); }
+      .cars .cars-container .content-container > .content {
+        padding: 10px;
+        display: grid;
+        grid-template-columns: 1fr;
+        overflow-y: auto;
+        gap: 15px; }
+        .cars .cars-container .content-container > .content .card {
+          padding: 20px;
+          background: #FFFFFF;
+          border-radius: 3px;
+          cursor: pointer;
+          box-sizing: border-box;
+          transition: 0.3s ease;
+          box-shadow: 0 0 10px -5px #DDDDDD; }
+          .cars .cars-container .content-container > .content .card header img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 3px; }
+          .cars .cars-container .content-container > .content .card header h3 {
+            font-weight: bold;
+            margin-block: 10px;
+            font-size: 1.2rem;
+            text-align: center; }
+          .cars .cars-container .content-container > .content .card footer {
+            display: flex;
+            flex-direction: column; }
   .cars .filters {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-    padding: 10px;
-    background: #DDDDDD;
-    box-sizing: border-box; }
+    padding: 6px 10px;
+    background: #FFFFFF;
+    box-sizing: border-box;
+    box-shadow: 0 0 10px -5px #171717;
+    z-index: 5; }
     .cars .filters .filters-item {
       display: flex;
       flex-wrap: nowrap;
@@ -114,7 +145,7 @@
         max-width: 100%;
         width: 100%; }
       .cars .filters .filters-item.sorting-container:not(:last-child) {
-        max-width: calc(100% - 48px);
+        max-width: calc(100% - 43px);
         width: 100%;
         margin-right: 0; }
         .cars .filters .filters-item.sorting-container:not(:last-child) .selector {
@@ -123,10 +154,10 @@
         background: #FFFFFF;
         padding: 10px;
         border-radius: 3px;
-        border: 1px solid #DDDDDD;
-        cursor: pointer; }
+        cursor: pointer;
+        border: 1px solid #DDDDDD; }
       .cars .filters .filters-item:not(:last-child) {
-        margin-right: 10px; }
+        margin-right: 5px; }
       .cars .filters .filters-item label {
         font-weight: bold;
         margin-right: 10px;
@@ -141,7 +172,7 @@
         font-size: 1rem; }
     .cars .filters .selector {
       min-width: 180px; }
-  .cars footer {
+  .cars .footer {
     position: relative;
     margin-top: 0;
     bottom: 0; }
@@ -154,14 +185,18 @@
       width: auto;
       min-width: 200px; }
     .cars aside .availability, .cars aside .price-per-day, .cars aside .sidebar-header {
-      width: 100%; } }
+      width: 100%; }
+  .cars .cars-container .content-container > .content {
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); } }
 @media screen and (min-width: 768px) {
+  .cars .cars-container .content-container > .content {
+    grid-template-columns: repeat(2, 1fr); }
   .cars .filters {
     flex-wrap: nowrap; }
     .cars .filters .filters-item {
       margin-block: 0; }
       .cars .filters .filters-item.sorting-container:not(:last-child) {
-        margin-right: 10px;
+        margin-right: 5px;
         width: auto; } }
 @media screen and (min-width: 1024px) {
   ::-webkit-scrollbar {
@@ -172,18 +207,29 @@
     background: #DA0037;
     border-radius: 3px; }
 
-  .cars aside {
-    display: flex;
-    flex-direction: column;
-    width: 320px;
-    position: relative;
-    flex-wrap: nowrap;
-    height: calc(100vh - 111px); }
-    .cars aside .sidebar-section.sidebar-header {
-      display: none; }
-  .cars .cars-container .content-container {
-    width: calc(100% - 320px); }
-  .cars .cars-container.full-screen > .content-container {
-    width: 100%; } }
+  .cars {
+    padding-top: 55px; }
+    .cars .cars-container .content-container {
+      width: calc(100% - 320px); }
+      .cars .cars-container .content-container > .content {
+        grid-template-columns: repeat(2, 1fr); }
+    .cars .cars-container.full-screen > .content-container {
+      width: 100%; }
+      .cars .cars-container.full-screen > .content-container > .content {
+        grid-template-columns: repeat(3, 1fr); }
+    .cars aside {
+      display: flex;
+      flex-direction: column;
+      width: 320px;
+      position: relative;
+      flex-wrap: nowrap;
+      height: calc(100vh - 91px); }
+      .cars aside .sidebar-section.sidebar-header {
+        display: none; } }
+@media screen and (min-width: 1440px) {
+  .cars .cars-container .content-container > .content {
+    grid-template-columns: repeat(4, 1fr); }
+  .cars .cars-container.full-screen > .content-container > .content {
+    grid-template-columns: repeat(5, 1fr); } }
 
 /*# sourceMappingURL=cars.css.map */
