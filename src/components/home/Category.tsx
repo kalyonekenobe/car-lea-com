@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 import {CategoryPropsType} from "../../types/home/home.types";
 
 export const Category: FC<CategoryPropsType> = props => {
-  const {imagePath, categoryName, url} = props.data;
+  const {imagePath, categoryName, url, state} = props.data;
 
   return (
     <div className={"categories-list-item"}>
@@ -12,7 +12,11 @@ export const Category: FC<CategoryPropsType> = props => {
       </div>
       <div className={"content"}>
         <h3>{categoryName}</h3>
-        <Link to={url} replace={true} className={"button button-red"}>View</Link>
+        <Link to={url} replace={true}
+              state={state}
+              className={"button button-red"}>
+          View
+        </Link>
       </div>
     </div>
   )

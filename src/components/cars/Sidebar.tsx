@@ -1,27 +1,19 @@
-import {FC, useState} from "react";
+import {FC} from "react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faXmark} from "@fortawesome/free-solid-svg-icons";
 import {Checkbox, FormControlLabel, Slider, Switch} from "@mui/material";
-import {CarsSidebarPropsType, CarsSidebarStateType} from "../../types/cars/cars.types";
-
-const initialState: CarsSidebarStateType = {
-  availableNow: true,
-  pricePerDay: {
-    min: 0,
-    max: 1000,
-    value: [100, 415.15]
-  }
-}
+import {CarsSidebarPropsType} from "../../types/cars/cars.types";
 
 export const Sidebar: FC<CarsSidebarPropsType> = props => {
-  const [state, setState] = useState(initialState);
-  const {hideSidebar} = props;
+  const {filtersState} = props;
+  const [state, setState] = filtersState;
 
   return (
     <aside className={"sidebar"}>
       <header className={"sidebar-section sidebar-header"}>
         <h3>Filters</h3>
-        <span className={"close-sidebar-button"} onClick={() => hideSidebar()}>
+        <span className={"close-sidebar-button"}
+              onClick={() => setState({...state, filtersSidebarIsVisible: false})}>
           <FontAwesomeIcon icon={faXmark} />
           <p>Close</p>
         </span>
@@ -32,86 +24,51 @@ export const Sidebar: FC<CarsSidebarPropsType> = props => {
       </div>
       <div className={"sidebar-section price-per-day"}>
         <h4>Price per day</h4>
-        <Slider min={state.pricePerDay.min} max={state.pricePerDay.max} value={state.pricePerDay.value}
+        <Slider min={state.filters.pricePerDay.min}
+                max={state.filters.pricePerDay.max} value={state.filters.pricePerDay.value}
                 marks={[
-                  {value: state.pricePerDay.min, label: `${state.pricePerDay.min}$`},
-                  {value: state.pricePerDay.max, label: `${state.pricePerDay.max}$`}
+                  {value: state.filters.pricePerDay.min, label: `${state.filters.pricePerDay.min}$`},
+                  {value: state.filters.pricePerDay.max, label: `${state.filters.pricePerDay.max}$`}
                 ]}
                 onChange={(event: Event, value: number | number[]) => {
-                  setState({...state, pricePerDay: {...state.pricePerDay, value: value}})
+                  setState({
+                    ...state,
+                    filters: {
+                      ...state.filters,
+                      pricePerDay: {...state.filters.pricePerDay, value: value}
+                    }
+                  })
                 }}
                 color={"primary"}
-                getAriaValueText={(value: number) => `${value}C`}
         />
       </div>
       <div className={"sidebar-section"}>
         <h4>Manufacturers</h4>
         <ul>
-          <li>
-            <FormControlLabel label={"Audi"} control={<Checkbox size={"small"} />} />
-          </li>
-          <li>
-            <FormControlLabel label={"Mercedes"} control={<Checkbox size={"small"} />} />
-          </li>
-          <li>
-            <FormControlLabel label={"BMW"} control={<Checkbox size={"small"} />} />
-          </li>
-          <li>
-            <FormControlLabel label={"Lamborgini"} control={<Checkbox size={"small"} />} />
-          </li>
-          <li>
-            <FormControlLabel label={"Toyota"} control={<Checkbox size={"small"} />} />
-          </li>
-          <li>
-            <FormControlLabel label={"Mazda"} control={<Checkbox size={"small"} />} />
-          </li>
-          <li>
-            <FormControlLabel label={"Nissan"} control={<Checkbox size={"small"} />} />
-          </li>
-          <li>
-            <FormControlLabel label={"Chevrolet"} control={<Checkbox size={"small"} />} />
-          </li>
-          <li>
-            <FormControlLabel label={"Chevrolet"} control={<Checkbox size={"small"} />} />
-          </li>
-          <li>
-            <FormControlLabel label={"Chevrolet"} control={<Checkbox size={"small"} />} />
-          </li>
-          <li>
-            <FormControlLabel label={"Chevrolet"} control={<Checkbox size={"small"} />} />
-          </li>
+          {
+            state.filters.manufacturers.map((manufacturer, index) => (
+              <li key={index}>
+                <FormControlLabel label={manufacturer.name}
+                                  control={<Checkbox value={manufacturer.value} size={"small"} />} />
+              </li>
+            ))
+          }
         </ul>
       </div>
       <div className={"sidebar-section"}>
-        <h4>Car types </h4>
+        <h4>Categories</h4>
         <ul>
-          <li>
-            <FormControlLabel label={"Hatchbacks"} control={<Checkbox size={"small"} />} />
-          </li>
-          <li>
-            <FormControlLabel label={"Sedans"} control={<Checkbox size={"small"} />} />
-          </li>
-          <li>
-            <FormControlLabel label={"Wagons"} control={<Checkbox size={"small"} />} />
-          </li>
-          <li>
-            <FormControlLabel label={"Convertibles"} control={<Checkbox size={"small"} />} />
-          </li>
-          <li>
-            <FormControlLabel label={"Coupes"} control={<Checkbox size={"small"} />} />
-          </li>
-          <li>
-            <FormControlLabel label={"SUVs"} control={<Checkbox size={"small"} />} />
-          </li>
-          <li>
-            <FormControlLabel label={"Pick ups"} control={<Checkbox size={"small"} />} />
-          </li>
-          <li>
-            <FormControlLabel label={"VANs"} control={<Checkbox size={"small"} />} />
-          </li>
-          <li>
-            <FormControlLabel label={"Jeeps"} control={<Checkbox size={"small"} />} />
-          </li>
+          {
+            state.filters.categories.map((category, index) => (
+              <li key={index}>
+                <FormControlLabel label={category.name}
+                                  control={
+                                    <Checkbox checked={category.checked} value={category.value} size={"small"} />
+                                  }
+                />
+              </li>
+            ))
+          }
         </ul>
       </div>
     </aside>

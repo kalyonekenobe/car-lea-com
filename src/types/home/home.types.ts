@@ -1,6 +1,7 @@
 import React from "react";
 import {Feedback} from "../../components/home/Feedback";
 import {Category} from "../../components/home/Category";
+import {CarsPagePropsType} from "../cars/cars.types";
 
 export type FeedbackPropsType = {
   data: FeedbackViewType
@@ -21,6 +22,7 @@ export type CategoryViewType = {
   imagePath: string,
   categoryName: string,
   url: string,
+  state: CarsPagePropsType
 }
 
 export type FeedbacksSectionPropsType = {

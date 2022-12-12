@@ -1,3 +1,5 @@
+import {CarType} from "../cars/cars.types";
+
 export type MobileMenuPropsType = {
   close: () => void
 }
@@ -41,4 +43,5 @@ export type PaginationPropsType = {
   itemsPerPage: number,
   numberOfButtons: number,
   items: any[],
+  updatePage: (page: number, items: CarType[]) => any
 }

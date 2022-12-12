@@ -1,4 +1,4 @@
-import {FC, useState} from "react";
+import {FC, useEffect, useState} from "react";
 import {
   PaginationButtonType,
   PaginationPropsType,
@@ -6,10 +6,9 @@ import {
 } from "../../types/application/application.types";
 
 export const Pagination: FC<PaginationPropsType> = props => {
+  const numberOfPages = Math.floor((props.items.length + props.itemsPerPage - 1) / props.itemsPerPage);
 
   const generateVisibleButtons = (page: number): PaginationButtonType[] => {
-    const numberOfPages = Math.floor((props.items.length + props.itemsPerPage - 1) / props.itemsPerPage);
-
     let visibleButtons: PaginationButtonType[] = [];
     visibleButtons.push({name: '1', number: 1});
     if (Math.min(page, Math.ceil(numberOfPages / 2)) - Math.floor(props.numberOfButtons / 2) - 1 > 1 && numberOfPages > props.numberOfButtons + 2) {
@@ -23,16 +22,23 @@ export const Pagination: FC<PaginationPropsType> = props => {
     if (Math.max(page, Math.ceil(numberOfPages / 2)) + Math.floor(props.numberOfButtons / 2) + 1 < numberOfPages && numberOfPages > props.numberOfButtons + 2) {
       visibleButtons.push({name: '...'})
     }
-    visibleButtons.push({name: `${numberOfPages}`, number: numberOfPages});
+    if (numberOfPages > 1)
+      visibleButtons.push({name: `${numberOfPages}`, number: numberOfPages});
 
     return visibleButtons;
   }
 
-  const [state, setState] = useState({activePage: 1, visibleButtons: generateVisibleButtons(1)} as PaginationStateType);
+  const [state, setState] = useState({} as PaginationStateType);
+
+  useEffect(() => {
+    setActivePage(1)
+  }, [])
 
   const setActivePage = (page: number) => {
     if (!page)
       return;
+
+    props.updatePage(page, props.items.slice(props.itemsPerPage * (page - 1), Math.min(props.items.length, props.itemsPerPage * page)));
     setState({...state, activePage: page, visibleButtons: generateVisibleButtons(page)})
   }
 

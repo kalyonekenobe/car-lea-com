@@ -18,47 +18,56 @@ export const Home: FC = () => {
         <Category data={{
           imagePath: `${process.env.PUBLIC_URL}/images/hatchback.jpg`,
           categoryName: "Hatchbacks",
-          url: '/cars/hatchbacks'
+          url: '/cars',
+          state: { category: "hatchbacks" }
         }} />
         <Category data={{
           imagePath: `${process.env.PUBLIC_URL}/images/sedan.jpg`,
           categoryName: "Sedans",
-          url: '/cars/sedans'
+          url: '/cars',
+          state: { category: "sedans" }
         }} />
         <Category data={{
           imagePath: `${process.env.PUBLIC_URL}/images/wagon.jpg`,
           categoryName: "Wagons",
-          url: '/cars/wagons'
+          url: '/cars',
+          state: { category: "wagons" }
         }} />
         <Category data={{
           imagePath: `${process.env.PUBLIC_URL}/images/convertible.jpg`,
           categoryName: "Convertibles",
-          url: '/cars/convertibles'
+          url: '/cars',
+          state: { category: "convertibles" }
         }} />
         <Category data={{
           imagePath: `${process.env.PUBLIC_URL}/images/coupe.jpg`,
           categoryName: "Coupes",
-          url: '/cars/coupes'
+          url: '/cars',
+          state: { category: "coupes" }
         }} />
         <Category data={{
           imagePath: `${process.env.PUBLIC_URL}/images/suv.jpg`,
           categoryName: "SUVs",
-          url: '/cars/suvs'
+          url: '/cars',
+          state: { category: "suvs" }
         }} />
         <Category data={{
           imagePath: `${process.env.PUBLIC_URL}/images/pickup.jpg`,
           categoryName: "Pick Ups",
-          url: '/cars/pickups'
+          url: '/cars',
+          state: { category: "pickups" }
         }} />
         <Category data={{
           imagePath: `${process.env.PUBLIC_URL}/images/van.jpg`,
           categoryName: "VANs",
-          url: '/cars/vans'
+          url: '/cars',
+          state: { category: "vans" }
         }} />
         <Category data={{
           imagePath: `${process.env.PUBLIC_URL}/images/jeep.jpg`,
           categoryName: "Jeeps",
-          url: '/cars/jeeps'
+          url: '/cars',
+          state: { category: "jeeps" }
         }} />
       </CategoriesSection>
       <AboutSection />
