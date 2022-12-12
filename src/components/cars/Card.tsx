@@ -10,7 +10,7 @@ export const Card: FC<CarCardPropsType> = props => {
   return (
     <div className={"card"}>
       <header>
-        <img src={data.image} alt={data.title} />
+        <img src={`${process.env.PUBLIC_URL}/${data.image}`} alt={data.title} />
         <h3>{data.title}</h3>
       </header>
       <div className={"card-content"}>
@@ -56,7 +56,7 @@ export const Card: FC<CarCardPropsType> = props => {
         </div>
       </div>
       <footer>
-        <Link to={`cars/${data.id}`} className={"button button-red"} replace={true}>View details</Link>
+        <Link to={`${data.id}`} className={"button button-red"}>View details</Link>
       </footer>
     </div>
   )

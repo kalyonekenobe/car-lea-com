@@ -3,294 +3,34 @@ import {Navbar} from "../application/Navbar";
 import {Footer} from "../application/Footer";
 import "../../styles/cars/cars.css";
 import {Sidebar} from "./Sidebar";
-import {CarsSectionStateType, CarType} from "../../types/cars/cars.types";
+import {CarCategoryType, CarManufacturerType, CarsSectionStateType, CarType} from "../../types/cars/cars.types";
 import {Filters} from "./Filters";
 import {Card} from "./Card";
 import {Pagination} from "../application/Pagination";
 import {useLocation} from "react-router";
+import axios, {AxiosResponse} from "axios";
 
 const initialState: CarsSectionStateType = {
   filtersSidebarIsVisible: window.innerWidth >= 1024,
+  pageIsLoading: true,
   activeContentPage: 1,
   filters: {
-    availableNow: true,
+    availableNow: false,
     pricePerDay: {
       min: 0,
-      max: 1000,
-      value: [100, 900]
+      max: 0,
+      value: [0, 0]
     },
-    manufacturers: [
-      {
-        name: "Audi",
-        value: "Audi",
-        checked: false
-      },
-      {
-        name: "Mercedes",
-        value: "Mercedes",
-        checked: false
-      },
-      {
-        name: "BMW",
-        value: "BMW",
-        checked: false
-      },
-      {
-        name: "Mitsubishi",
-        value: "Mitsubishi",
-        checked: false
-      },
-      {
-        name: "Nissan",
-        value: "Nissan",
-        checked: false
-      },
-      {
-        name: "Toyota",
-        value: "Toyota",
-        checked: false
-      },
-      {
-        name: "Porshe",
-        value: "Porshe",
-        checked: false
-      },
-      {
-        name: "Daewoo",
-        value: "Daewoo",
-        checked: false
-      },
-    ],
-    categories: [
-      {
-        name: "Hatchbacks",
-        value: "hatchbacks",
-        checked: false
-      },
-      {
-        name: "Sedans",
-        value: "sedans",
-        checked: false
-      },
-      {
-        name: "Wagons",
-        value: "wagons",
-        checked: false
-      },
-      {
-        name: "Convertibles",
-        value: "convertibles",
-        checked: false
-      },
-      {
-        name: "Coupes",
-        value: "coupes",
-        checked: false
-      },
-      {
-        name: "SUVs",
-        value: "suvs",
-        checked: false
-      },
-      {
-        name: "Pick Ups",
-        value: "pickups",
-        checked: false
-      },
-      {
-        name: "VANs",
-        value: "vans",
-        checked: false
-      },
-      {
-        name: "Jeeps",
-        value: "jeeps",
-        checked: false
-      },
-    ]
+    manufacturers: [],
+    categories: [],
+    orderBy: "MostRelevant",
+    searchQuery: "",
   },
   content: [],
+  filteredContent: [],
+  contentOnPage: [],
   activePage: 1
 }
-
-const content: CarType[] = [
-  {
-    id: 1,
-    category: "hatchbacks",
-    image: `${process.env.PUBLIC_URL}/images/coupe.jpg`,
-    manufacturer: "Audi",
-    pricePerDay: 200,
-    mileage: 10000,
-    seats: 2,
-    title: "Audi R8 1",
-    transmission: "Automatic"
-  },
-  {
-    id: 2,
-    category: "hatchbacks",
-    image: `${process.env.PUBLIC_URL}/images/coupe.jpg`,
-    manufacturer: "Audi",
-    pricePerDay: 200,
-    mileage: 10000,
-    seats: 2,
-    title: "Audi R8 2",
-    transmission: "Automatic"
-  },
-  {
-    id: 3,
-    category: "hatchbacks",
-    image: `${process.env.PUBLIC_URL}/images/coupe.jpg`,
-    manufacturer: "Audi",
-    pricePerDay: 200,
-    mileage: 10000,
-    seats: 2,
-    title: "Audi R8 3",
-    transmission: "Automatic"
-  },
-  {
-    id: 4,
-    category: "hatchbacks",
-    image: `${process.env.PUBLIC_URL}/images/coupe.jpg`,
-    manufacturer: "Audi",
-    pricePerDay: 200,
-    mileage: 10000,
-    seats: 2,
-    title: "Audi R8 4",
-    transmission: "Automatic"
-  },
-  {
-    id: 5,
-    category: "hatchbacks",
-    image: `${process.env.PUBLIC_URL}/images/coupe.jpg`,
-    manufacturer: "Audi",
-    pricePerDay: 200,
-    mileage: 10000,
-    seats: 2,
-    title: "Audi R8 5",
-    transmission: "Automatic"
-  },
-  {
-    id: 6,
-    category: "hatchbacks",
-    image: `${process.env.PUBLIC_URL}/images/coupe.jpg`,
-    manufacturer: "Audi",
-    pricePerDay: 200,
-    mileage: 10000,
-    seats: 2,
-    title: "Audi R8 6",
-    transmission: "Automatic"
-  },
-  {
-    id: 7,
-    category: "hatchbacks",
-    image: `${process.env.PUBLIC_URL}/images/coupe.jpg`,
-    manufacturer: "Audi",
-    pricePerDay: 200,
-    mileage: 10000,
-    seats: 2,
-    title: "Audi R8 7",
-    transmission: "Automatic"
-  },
-  {
-    id: 8,
-    category: "hatchbacks",
-    image: `${process.env.PUBLIC_URL}/images/coupe.jpg`,
-    manufacturer: "Audi",
-    pricePerDay: 200,
-    mileage: 10000,
-    seats: 2,
-    title: "Audi R8 8",
-    transmission: "Automatic"
-  },
-  {
-    id: 9,
-    category: "hatchbacks",
-    image: `${process.env.PUBLIC_URL}/images/coupe.jpg`,
-    manufacturer: "Audi",
-    pricePerDay: 200,
-    mileage: 10000,
-    seats: 2,
-    title: "Audi R8 9",
-    transmission: "Automatic"
-  },
-  {
-    id: 10,
-    category: "hatchbacks",
-    image: `${process.env.PUBLIC_URL}/images/coupe.jpg`,
-    manufacturer: "Audi",
-    pricePerDay: 200,
-    mileage: 10000,
-    seats: 2,
-    title: "Audi R8 10",
-    transmission: "Automatic"
-  },
-  {
-    id: 11,
-    category: "hatchbacks",
-    image: `${process.env.PUBLIC_URL}/images/coupe.jpg`,
-    manufacturer: "Audi",
-    pricePerDay: 200,
-    mileage: 10000,
-    seats: 2,
-    title: "Audi R8 11",
-    transmission: "Automatic"
-  },
-  {
-    id: 12,
-    category: "hatchbacks",
-    image: `${process.env.PUBLIC_URL}/images/coupe.jpg`,
-    manufacturer: "Audi",
-    pricePerDay: 200,
-    mileage: 10000,
-    seats: 2,
-    title: "Audi R8 12",
-    transmission: "Automatic"
-  },
-  {
-    id: 13,
-    category: "hatchbacks",
-    image: `${process.env.PUBLIC_URL}/images/coupe.jpg`,
-    manufacturer: "Audi",
-    pricePerDay: 200,
-    mileage: 10000,
-    seats: 2,
-    title: "Audi R8 13",
-    transmission: "Automatic"
-  },
-  {
-    id: 14,
-    category: "hatchbacks",
-    image: `${process.env.PUBLIC_URL}/images/coupe.jpg`,
-    manufacturer: "Audi",
-    pricePerDay: 200,
-    mileage: 10000,
-    seats: 2,
-    title: "Audi R8 14",
-    transmission: "Automatic"
-  },
-  {
-    id: 15,
-    category: "hatchbacks",
-    image: `${process.env.PUBLIC_URL}/images/coupe.jpg`,
-    manufacturer: "Audi",
-    pricePerDay: 200,
-    mileage: 10000,
-    seats: 2,
-    title: "Audi R8 15",
-    transmission: "Automatic"
-  },
-  {
-    id: 16,
-    category: "hatchbacks",
-    image: `${process.env.PUBLIC_URL}/images/coupe.jpg`,
-    manufacturer: "Audi",
-    pricePerDay: 200,
-    mileage: 10000,
-    seats: 2,
-    title: "Audi R8 16",
-    transmission: "Automatic"
-  }
-]
 
 export const Cars: FC = () => {
 
@@ -301,20 +41,167 @@ export const Cars: FC = () => {
   const [state, setState] = useState(initialState);
 
   useEffect(() => {
-    if (initialCarsCategory)
-      setState({
-        ...state,
+    setState({...state, pageIsLoading: true});
+    let updatedState: CarsSectionStateType = state;
+    axios.get<any, AxiosResponse<CarManufacturerType[]>>("http://localhost:3001/manufacturers").then(response => {
+      const manufacturers = response.data;
+      updatedState = {
+        ...updatedState,
         filters: {
-          ...state.filters,
-          categories: state.filters.categories.map(category => {
-            return category.value === initialCarsCategory ? {...category, checked: true} : {...category, checked: false}
-          })
-        },
-        content: content.slice(0, Math.min(content.length, contentPerPage))
-      })
+          ...updatedState.filters,
+          manufacturers: manufacturers.map(manufacturer => ({
+            name: manufacturer.name,
+            value: manufacturer.value,
+            checked: false
+          }))
+        }
+      }
+      axios.get<any, AxiosResponse<CarCategoryType[]>>('http://localhost:3001/categories').then(response => {
+        const categories = response.data;
+        updatedState = {
+          ...updatedState,
+          filters: {
+            ...updatedState.filters,
+            categories: categories.map(category => ({
+              name: category.name,
+              value: category.value,
+              checked: initialCarsCategory === category.value
+            }))
+          }
+        }
+        axios.get<any, AxiosResponse<CarType[]>>('http://localhost:3001/cars').then(response => {
+          let cars = structuredClone(response.data);
+          cars = cars.sort((a: CarType, b: CarType) => a.pricePerDay - b.pricePerDay);
+          updatedState = {
+            ...updatedState,
+            content: response.data,
+            filters: {
+              ...updatedState.filters,
+              pricePerDay: {
+                min: cars[0].pricePerDay,
+                max: cars[cars.length - 1].pricePerDay,
+                value: [cars[0].pricePerDay, cars[cars.length - 1].pricePerDay]
+              }
+            },
+            filteredContent: structuredClone(cars).sort((a: CarType, b: CarType) => {
+              if (typeof a.id === "number" && typeof b.id === "number")
+                return b.id - a.id
+              if (typeof a.id === "string" && typeof b.id === "string")
+                return b.id.toString().localeCompare(a.id.toString())
+              return -1;
+            }),
+            contentOnPage: cars.slice(0, Math.min(cars.length, contentPerPage)),
+          }
+          if (updatedState.filters.categories) {
+            if (updatedState.filters.categories) {
+              const checkedCategories = updatedState.filters.categories.filter(category => category.checked);
+              if (checkedCategories.length > 0) {
+                updatedState.filteredContent = structuredClone(updatedState.filteredContent).filter((contentItem: CarType) => {
+                  return checkedCategories.find(category => category.value === contentItem.category);
+                })
+              }
+            }
+          }
+          setState({...updatedState, pageIsLoading: false});
+        });
+      });
+    })
   }, [initialCarsCategory])
 
-  return (
+  useEffect(() => {
+    let filteredContent: CarType[] = state.content;
+    if (state.filters === undefined)
+      return;
+    if (state.filters.orderBy) {
+      switch (state.filters.orderBy) {
+        case "MostRelevant":
+          filteredContent = structuredClone(filteredContent).sort((a: CarType, b: CarType) => {
+            if (typeof a.id === "number" && typeof b.id === "number")
+              return b.id - a.id
+            if (typeof a.id === "string" && typeof b.id === "string")
+              return b.id.toString().localeCompare(a.id.toString())
+            return -1;
+          })
+          break;
+        case "DateAdded":
+          filteredContent = structuredClone(filteredContent).sort((a: CarType, b: CarType) => {
+            return new Date(a.addedAt).getTime() - new Date(b.addedAt).getTime();
+          })
+          break;
+        case "PriceAsc":
+          filteredContent = structuredClone(filteredContent).sort((a: CarType, b: CarType) => {
+            return a.pricePerDay - b.pricePerDay;
+          })
+          break;
+        case "PriceDesc":
+          filteredContent = structuredClone(filteredContent).sort((a: CarType, b: CarType) => {
+            return b.pricePerDay - a.pricePerDay;
+          })
+          break;
+        case "AvailableFirst":
+          filteredContent = structuredClone(filteredContent).sort((a: CarType, b: CarType) => {
+            const aIsAvailable = !a.reservations.find(reservation => {
+              return new Date(reservation.from).getTime() <= new Date().getTime() &&
+                new Date(reservation.to).getTime() >= new Date().getTime()
+            })
+            const bIsAvailable = !b.reservations.find(reservation => {
+              return new Date(reservation.from).getTime() <= new Date().getTime() &&
+                new Date(reservation.to).getTime() >= new Date().getTime()
+            })
+            if (aIsAvailable)
+              return -1;
+            if (bIsAvailable)
+              return 1;
+            return new Date(a.addedAt).getTime() - new Date(b.addedAt).getTime();
+          })
+          break;
+        default:
+          break;
+      }
+    }
+    if (state.filters.availableNow) {
+      filteredContent = structuredClone(filteredContent).filter((contentItem: CarType) => {
+        return !contentItem.reservations.find(reservation => {
+          return new Date(reservation.from).getTime() <= new Date().getTime() &&
+            new Date(reservation.to).getTime() >= new Date().getTime()
+        })
+      })
+    }
+    if (state.filters.manufacturers) {
+      const checkedManufacturers = state.filters.manufacturers.filter(manufacturer => manufacturer.checked);
+      if (checkedManufacturers.length > 0) {
+        filteredContent = structuredClone(filteredContent).filter((contentItem: CarType) => {
+          return checkedManufacturers.find(manufacturer => manufacturer.name === contentItem.manufacturer);
+        })
+      }
+    }
+    if (state.filters.categories) {
+      const checkedCategories = state.filters.categories.filter(category => category.checked);
+      if (checkedCategories.length > 0) {
+        filteredContent = structuredClone(filteredContent).filter((contentItem: CarType) => {
+          return checkedCategories.find(category => category.value === contentItem.category);
+        })
+      }
+    }
+    if (state.filters.pricePerDay) {
+      filteredContent = structuredClone(filteredContent).filter((contentItem: CarType) => {
+        return state.filters.pricePerDay.value[0] <= contentItem.pricePerDay &&
+          contentItem.pricePerDay <= state.filters.pricePerDay.value[1];
+      })
+    }
+    if (state.filters.searchQuery.trim() !== '') {
+      filteredContent = structuredClone(filteredContent).filter((contentItem: CarType) => {
+        return contentItem.title.includes(state.filters.searchQuery)
+      })
+    }
+    setState({
+      ...state,
+      pageIsLoading: false,
+      filteredContent: filteredContent
+    });
+  }, [state.filters])
+
+  return !state.pageIsLoading ? (
     <main className={"cars"}>
       <Navbar changeNavbarThemeCheckpoint={0} navbarTheme={"white"} />
       <section className={`cars-container ${!state.filtersSidebarIsVisible ? `full-screen` : ``}`}>
@@ -327,22 +214,25 @@ export const Cars: FC = () => {
           <div className={'content-wrapper'}>
             <div className={"content"}>
               {
-                state.content.map((item, index) => (
-                  <Card key={index} data={item} />
-                ))
+                state.filteredContent.length > 0 &&
+                  state.contentOnPage.map((item, index) => (
+                    <Card key={index} data={item} />
+                  ))
               }
             </div>
           </div>
-          <Pagination items={content}
-                      itemsPerPage={contentPerPage}
-                      numberOfButtons={numberOfButtons}
-                      updatePage={(page: number, items: CarType[]) => {
-                        setState({...state, activePage: page, content: items})
-                      }}
-          />
+          {
+            <Pagination items={state.filteredContent}
+                        itemsPerPage={contentPerPage}
+                        numberOfButtons={numberOfButtons}
+                        updatePage={(page: number, items: CarType[]) => {
+                          setState({...state, activePage: page, contentOnPage: items})
+                        }}
+            />
+          }
         </div>
       </section>
       <Footer />
     </main>
-  )
+  ) : (<></>)
 }

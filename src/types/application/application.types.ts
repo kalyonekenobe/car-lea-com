@@ -16,7 +16,8 @@ export type NavbarPropsType = {
 }
 
 export type SelectorPropsType = {
-  options: SelectorOptionType[]
+  options: SelectorOptionType[],
+  onChange?: (...params: any) => any
 }
 
 export type SelectorStateType = {
@@ -31,6 +32,7 @@ export type SelectorOptionType = {
 
 export type PaginationStateType = {
   activePage: number,
+  numberOfPages: number,
   visibleButtons: PaginationButtonType[],
 }
 

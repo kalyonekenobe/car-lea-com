@@ -2,7 +2,7 @@ import {FC} from "react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faXmark} from "@fortawesome/free-solid-svg-icons";
 import {Checkbox, FormControlLabel, Slider, Switch} from "@mui/material";
-import {CarsSidebarPropsType} from "../../types/cars/cars.types";
+import {CarsSectionStateType, CarsSidebarPropsType, CarType} from "../../types/cars/cars.types";
 
 export const Sidebar: FC<CarsSidebarPropsType> = props => {
   const {filtersState} = props;
@@ -20,7 +20,19 @@ export const Sidebar: FC<CarsSidebarPropsType> = props => {
       </header>
       <div className={"sidebar-section availability"}>
         <h4>Available now </h4>
-        <Switch size={"medium"} defaultChecked />
+        <Switch
+          size={"medium"}
+          checked={state.filters.availableNow}
+          onChange={() => {
+            setState({
+              ...state,
+              filters: {
+                ...state.filters,
+                availableNow: !state.filters.availableNow
+              }
+            })
+          }}
+        />
       </div>
       <div className={"sidebar-section price-per-day"}>
         <h4>Price per day</h4>
@@ -30,12 +42,17 @@ export const Sidebar: FC<CarsSidebarPropsType> = props => {
                   {value: state.filters.pricePerDay.min, label: `${state.filters.pricePerDay.min}$`},
                   {value: state.filters.pricePerDay.max, label: `${state.filters.pricePerDay.max}$`}
                 ]}
+                valueLabelDisplay={"auto"}
+                step={50}
                 onChange={(event: Event, value: number | number[]) => {
                   setState({
                     ...state,
                     filters: {
                       ...state.filters,
-                      pricePerDay: {...state.filters.pricePerDay, value: value}
+                      pricePerDay: {
+                        ...state.filters.pricePerDay,
+                        value: value as number[]
+                      }
                     }
                   })
                 }}
@@ -48,8 +65,27 @@ export const Sidebar: FC<CarsSidebarPropsType> = props => {
           {
             state.filters.manufacturers.map((manufacturer, index) => (
               <li key={index}>
-                <FormControlLabel label={manufacturer.name}
-                                  control={<Checkbox value={manufacturer.value} size={"small"} />} />
+                <FormControlLabel
+                  label={manufacturer.name}
+                  checked={manufacturer.checked}
+                  control={
+                    <Checkbox
+                      value={manufacturer.value}
+                      size={"small"}
+                      onChange={() => {
+                        setState({
+                          ...state,
+                          filters: {
+                            ...state.filters,
+                            manufacturers: state.filters.manufacturers.map(item => {
+                              return item.name === manufacturer.name ? {...item, checked: !item.checked} : item
+                            })
+                          }
+                        })
+                      }}
+                    />
+                  }
+                />
               </li>
             ))
           }
@@ -61,10 +97,26 @@ export const Sidebar: FC<CarsSidebarPropsType> = props => {
           {
             state.filters.categories.map((category, index) => (
               <li key={index}>
-                <FormControlLabel label={category.name}
-                                  control={
-                                    <Checkbox checked={category.checked} value={category.value} size={"small"} />
-                                  }
+                <FormControlLabel
+                  label={category.name}
+                  control={
+                    <Checkbox
+                      checked={category.checked}
+                      value={category.value}
+                      size={"small"}
+                      onChange={() => {
+                        setState({
+                          ...state,
+                          filters: {
+                            ...state.filters,
+                            categories: state.filters.categories.map(item => {
+                              return item.value === category.value ? {...item, checked: !item.checked} : item
+                            })
+                          }
+                        })
+                      }}
+                    />
+                  }
                 />
               </li>
             ))

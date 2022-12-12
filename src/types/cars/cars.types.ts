@@ -2,9 +2,12 @@ import React from "react";
 
 export type CarsSectionStateType = {
   filtersSidebarIsVisible: boolean,
+  pageIsLoading: boolean,
   activeContentPage: number,
   filters: CarsSidebarStateType,
   content: CarType[],
+  filteredContent: CarType[],
+  contentOnPage: CarType[],
   activePage: number
 }
 
@@ -13,10 +16,12 @@ export type CarsSidebarStateType = {
   pricePerDay: {
     min: number,
     max: number,
-    value: number | number[]
+    value: number[]
   },
   manufacturers: CarsSidebarManufacturerType[],
   categories: CarsSidebarCategoryType[],
+  orderBy: string,
+  searchQuery: string
 }
 
 export type CarsSidebarPropsType = {
@@ -52,9 +57,26 @@ export type CarType = {
   manufacturer: string,
   mileage: number,
   seats: number,
-  transmission: string
+  transmission: string,
+  addedAt: Date,
+  reservations: CarReservationType[]
+}
+
+export type CarCategoryType = {
+  name: string,
+  value: string
+}
+
+export type CarManufacturerType = {
+  name: string,
+  value: string
 }
 
 export type CarCardPropsType = {
   data: CarType
+}
+
+export type CarReservationType = {
+  from: Date,
+  to: Date
 }

@@ -9,10 +9,15 @@ const initialState: SelectorStateType = {
 }
 
 export const Selector: FC<SelectorPropsType> = props => {
-  const {options} = props;
+  const {options, onChange} = props;
   const [state, setState] = useState({...initialState, selectedOption: options[0]});
   const selectorRef = useRef<HTMLInputElement>(null);
   useClickOutside(selectorRef, () => setState({...state, optionListIsVisible: false}));
+
+  useEffect(() => {
+    if (onChange)
+      onChange(state.selectedOption.value);
+  }, [state.selectedOption])
 
   return (
     <div className={`selector ${state.optionListIsVisible ? 'active' : ''}`} ref={selectorRef}>
