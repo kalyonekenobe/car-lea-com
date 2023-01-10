@@ -204,6 +204,7 @@
 
   .feedbacks-section {
     padding-inline: 10px;
+    user-select: none;
 
     .feedbacks-container {
       display: flex;

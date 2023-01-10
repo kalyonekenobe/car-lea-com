@@ -339,6 +339,15 @@ body {
     margin-bottom: 20px;
   }
 
+  .error-input {
+    border: 1px solid $color-red !important;
+  }
+
+  .error {
+    margin-top: 5px;
+    color: $color-red;
+  }
+
   form {
 
     .form-group {
@@ -471,6 +480,23 @@ body {
         color: $color-red;
       }
     }
+  }
+}
+
+.loading-page {
+  margin: auto auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+
+  img {
+    min-width: 32px;
+    max-width: 64px;
+    width: 25%;
   }
 }
 

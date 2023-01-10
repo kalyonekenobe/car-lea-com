@@ -2,7 +2,7 @@ import {FC} from "react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faXmark} from "@fortawesome/free-solid-svg-icons";
 import {Checkbox, FormControlLabel, Slider, Switch} from "@mui/material";
-import {CarsSectionStateType, CarsSidebarPropsType, CarType} from "../../types/cars/cars.types";
+import {CarsSidebarPropsType} from "../../types/cars/cars.types";
 
 export const Sidebar: FC<CarsSidebarPropsType> = props => {
   const {filtersState} = props;
@@ -36,58 +36,71 @@ export const Sidebar: FC<CarsSidebarPropsType> = props => {
       </div>
       <div className={"sidebar-section price-per-day"}>
         <h4>Price per day</h4>
-        <Slider min={state.filters.pricePerDay.min}
-                max={state.filters.pricePerDay.max} value={state.filters.pricePerDay.value}
-                marks={[
-                  {value: state.filters.pricePerDay.min, label: `${state.filters.pricePerDay.min}$`},
-                  {value: state.filters.pricePerDay.max, label: `${state.filters.pricePerDay.max}$`}
-                ]}
-                valueLabelDisplay={"auto"}
-                step={50}
-                onChange={(event: Event, value: number | number[]) => {
-                  setState({
-                    ...state,
-                    filters: {
-                      ...state.filters,
-                      pricePerDay: {
-                        ...state.filters.pricePerDay,
-                        value: value as number[]
-                      }
+        {
+          !state.pageIsLoading ?
+            <Slider
+              min={state.filters.pricePerDay.min}
+              max={state.filters.pricePerDay.max} value={state.filters.pricePerDay.value}
+              marks={[
+                {value: state.filters.pricePerDay.min, label: `${state.filters.pricePerDay.min}$`},
+                {value: state.filters.pricePerDay.max, label: `${state.filters.pricePerDay.max}$`}
+              ]}
+              valueLabelDisplay={"auto"}
+              step={50}
+              onChange={(event: Event, value: number | number[]) => {
+                setState({
+                  ...state,
+                  filters: {
+                    ...state.filters,
+                    pricePerDay: {
+                      ...state.filters.pricePerDay,
+                      value: value as number[]
                     }
-                  })
-                }}
-                color={"primary"}
-        />
+                  }
+                })
+              }}
+              color={"primary"}
+            />
+            :
+            <div className={"loading-page"}>
+              <img src={`${process.env.PUBLIC_URL}/images/loading.gif`} alt={"Loading"} />
+            </div>
+        }
       </div>
       <div className={"sidebar-section"}>
         <h4>Manufacturers</h4>
         <ul>
           {
-            state.filters.manufacturers.map((manufacturer, index) => (
-              <li key={index}>
-                <FormControlLabel
-                  label={manufacturer.name}
-                  checked={manufacturer.checked}
-                  control={
-                    <Checkbox
-                      value={manufacturer.value}
-                      size={"small"}
-                      onChange={() => {
-                        setState({
-                          ...state,
-                          filters: {
-                            ...state.filters,
-                            manufacturers: state.filters.manufacturers.map(item => {
-                              return item.name === manufacturer.name ? {...item, checked: !item.checked} : item
-                            })
-                          }
-                        })
-                      }}
-                    />
-                  }
-                />
-              </li>
-            ))
+            !state.pageIsLoading ?
+              state.filters.manufacturers.map((manufacturer, index) => (
+                <li key={index}>
+                  <FormControlLabel
+                    label={manufacturer.name}
+                    checked={manufacturer.checked}
+                    control={
+                      <Checkbox
+                        value={manufacturer.value}
+                        size={"small"}
+                        onChange={() => {
+                          setState({
+                            ...state,
+                            filters: {
+                              ...state.filters,
+                              manufacturers: state.filters.manufacturers.map(item => {
+                                return item.name === manufacturer.name ? {...item, checked: !item.checked} : item
+                              })
+                            }
+                          })
+                        }}
+                      />
+                    }
+                  />
+                </li>
+              ))
+            :
+              <div className={"loading-page"}>
+                <img src={`${process.env.PUBLIC_URL}/images/loading.gif`} alt={"Loading"} />
+              </div>
           }
         </ul>
       </div>
@@ -95,31 +108,36 @@ export const Sidebar: FC<CarsSidebarPropsType> = props => {
         <h4>Categories</h4>
         <ul>
           {
-            state.filters.categories.map((category, index) => (
-              <li key={index}>
-                <FormControlLabel
-                  label={category.name}
-                  control={
-                    <Checkbox
-                      checked={category.checked}
-                      value={category.value}
-                      size={"small"}
-                      onChange={() => {
-                        setState({
-                          ...state,
-                          filters: {
-                            ...state.filters,
-                            categories: state.filters.categories.map(item => {
-                              return item.value === category.value ? {...item, checked: !item.checked} : item
-                            })
-                          }
-                        })
-                      }}
-                    />
-                  }
-                />
-              </li>
-            ))
+            !state.pageIsLoading ?
+              state.filters.categories.map((category, index) => (
+                <li key={index}>
+                  <FormControlLabel
+                    label={category.name}
+                    control={
+                      <Checkbox
+                        checked={category.checked}
+                        value={category.value}
+                        size={"small"}
+                        onChange={() => {
+                          setState({
+                            ...state,
+                            filters: {
+                              ...state.filters,
+                              categories: state.filters.categories.map(item => {
+                                return item.value === category.value ? {...item, checked: !item.checked} : item
+                              })
+                            }
+                          })
+                        }}
+                      />
+                    }
+                  />
+                </li>
+              ))
+            :
+              <div className={"loading-page"}>
+                <img src={`${process.env.PUBLIC_URL}/images/loading.gif`} alt={"Loading"} />
+              </div>
           }
         </ul>
       </div>

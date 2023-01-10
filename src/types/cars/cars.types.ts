@@ -1,4 +1,5 @@
 import React from "react";
+import {FormErrorType} from "../application/application.types";
 
 export type CarsSectionStateType = {
   filtersSidebarIsVisible: boolean,
@@ -60,6 +61,7 @@ export type CarType = {
   transmission: string,
   addedAt: Date,
   reservations: CarReservationType[]
+  feedbacks: CarFeedbackType[]
 }
 
 export type CarCategoryType = {
@@ -77,6 +79,36 @@ export type CarCardPropsType = {
 }
 
 export type CarReservationType = {
+  bookerName: string,
+  bookerPhone: string,
   from: Date,
-  to: Date
+  to: Date,
+  additionalWishes?: string
+}
+
+export type CarDetailsStateType = {
+  data: CarType
+}
+
+export type GiveCarFeedbackFormPropsType = {
+  car?: CarType
+}
+
+export type GiveCarFeedbackFormStateType = {
+  data: CarFeedbackType,
+  errors: FormErrorType[]
+}
+
+export type ReserveCarFormPropsType = {
+  car?: CarType
+}
+
+export type ReserveCarFormStateType = {
+  data: CarReservationType,
+  errors: FormErrorType[]
+}
+
+export type CarFeedbackType = {
+  name: string,
+  feedback: string
 }

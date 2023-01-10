@@ -42,6 +42,10 @@ export const Cars: FC = () => {
 
   useEffect(() => {
     setState({...state, pageIsLoading: true});
+  }, [])
+
+  useEffect(() => {
+    setState({...state, pageIsLoading: true});
     let updatedState: CarsSectionStateType = state;
     axios.get<any, AxiosResponse<CarManufacturerType[]>>("http://localhost:3001/manufacturers").then(response => {
       const manufacturers = response.data;
@@ -109,6 +113,7 @@ export const Cars: FC = () => {
   }, [initialCarsCategory])
 
   useEffect(() => {
+    setState({...state, pageIsLoading: true})
     let filteredContent: CarType[] = state.content;
     if (state.filters === undefined)
       return;
@@ -140,18 +145,18 @@ export const Cars: FC = () => {
           break;
         case "AvailableFirst":
           filteredContent = structuredClone(filteredContent).sort((a: CarType, b: CarType) => {
-            const aIsAvailable = !a.reservations.find(reservation => {
-              return new Date(reservation.from).getTime() <= new Date().getTime() &&
-                new Date(reservation.to).getTime() >= new Date().getTime()
+            const aIsAvailable = a.reservations.find(reservation => {
+              return !((new Date(reservation.from).getTime() > new Date().getTime() && new Date(reservation.from).getTime() <= new Date().getTime()) ||
+                (new Date(reservation.to).getTime() >= new Date().getTime() && new Date(reservation.to).getTime() <= new Date().getTime()));
             })
-            const bIsAvailable = !b.reservations.find(reservation => {
-              return new Date(reservation.from).getTime() <= new Date().getTime() &&
-                new Date(reservation.to).getTime() >= new Date().getTime()
+            const bIsAvailable = b.reservations.find(reservation => {
+              return !((new Date(reservation.from).getTime() > new Date().getTime() && new Date(reservation.from).getTime() <= new Date().getTime()) ||
+                (new Date(reservation.to).getTime() >= new Date().getTime() && new Date(reservation.to).getTime() <= new Date().getTime()));
             })
             if (aIsAvailable)
-              return -1;
-            if (bIsAvailable)
               return 1;
+            if (bIsAvailable)
+              return -1;
             return new Date(a.addedAt).getTime() - new Date(b.addedAt).getTime();
           })
           break;
@@ -201,7 +206,12 @@ export const Cars: FC = () => {
     });
   }, [state.filters])
 
-  return !state.pageIsLoading ? (
+  useEffect(() => {
+    if (state.pageIsLoading && state.filtersSidebarIsVisible)
+      setState({...state, filtersSidebarIsVisible: true})
+  }, [state.pageIsLoading])
+
+  return (
     <main className={"cars"}>
       <Navbar changeNavbarThemeCheckpoint={0} navbarTheme={"white"} />
       <section className={`cars-container ${!state.filtersSidebarIsVisible ? `full-screen` : ``}`}>
@@ -209,30 +219,37 @@ export const Cars: FC = () => {
           state.filtersSidebarIsVisible &&
             <Sidebar filtersState={[state, setState]} />
         }
-        <div className={`content-container`}>
-          <Filters carsContainerState={[state, setState]} />
-          <div className={'content-wrapper'}>
-            <div className={"content"}>
-              {
-                state.filteredContent.length > 0 &&
-                  state.contentOnPage.map((item, index) => (
-                    <Card key={index} data={item} />
-                  ))
-              }
-            </div>
-          </div>
-          {
-            <Pagination items={state.filteredContent}
-                        itemsPerPage={contentPerPage}
-                        numberOfButtons={numberOfButtons}
-                        updatePage={(page: number, items: CarType[]) => {
-                          setState({...state, activePage: page, contentOnPage: items})
-                        }}
+
+          <div className={`content-container`}>
+            <Filters carsContainerState={[state, setState]} />
+            {
+              !state.pageIsLoading ?
+                <div className={'content-wrapper'}>
+                  <div className={"content"}>
+                    {
+                      state.filteredContent.length > 0 &&
+                      state.contentOnPage.map((item, index) => (
+                        <Card key={index} data={item} />
+                      ))
+                    }
+                  </div>
+                </div>
+                :
+                <div className={"loading-page"}>
+                  <img src={`${process.env.PUBLIC_URL}/images/loading.gif`} alt={"Loading"} />
+                </div>
+            }
+            <Pagination
+              items={state.filteredContent}
+              itemsPerPage={contentPerPage}
+              numberOfButtons={numberOfButtons}
+              updatePage={(page: number, items: CarType[]) => {
+                setState({...state, activePage: page, contentOnPage: items})
+              }}
             />
-          }
-        </div>
+          </div>
       </section>
       <Footer />
     </main>
-  ) : (<></>)
+  )
 }

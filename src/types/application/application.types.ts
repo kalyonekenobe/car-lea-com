@@ -47,3 +47,8 @@ export type PaginationPropsType = {
   items: any[],
   updatePage: (page: number, items: CarType[]) => any
 }
+
+export type FormErrorType = {
+  fieldName: string,
+  message: string
+}

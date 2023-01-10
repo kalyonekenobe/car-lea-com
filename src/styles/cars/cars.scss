@@ -241,7 +241,7 @@
                 }
 
                 &.transmission span {
-                  color: $color-brown;
+                  color: $color-violet;
                 }
               }
             }
@@ -331,6 +331,207 @@
   }
 }
 
+.car-details {
+  padding-top: 57px;
+  font-family: $nunito;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+  min-height: calc(100vh - 57px);
+
+  .content {
+    display: flex;
+    flex-wrap: wrap;
+
+    .car-info {
+      max-width: 100%;
+      min-width: 320px;
+      padding: 20px;
+      background: $color-default-white;
+      box-sizing: border-box;
+      transition: $default-transition;
+      position: relative;
+      width: 100%;
+
+      .car-info-header {
+        margin-bottom: 25px;
+
+        img {
+          width: 100%;
+          aspect-ratio: 2 / 1;
+          object-fit: cover;
+          border-radius: $border-radius-small;
+        }
+
+        h3 {
+          font-weight: bold;
+          margin-block: 20px;
+          font-size: 1.5rem;
+        }
+      }
+
+      .car-info-content {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        row-gap: 15px;
+        margin-bottom: 20px;
+
+        .content-item {
+          display: inline-flex;
+          width: 100%;
+          font-size: 1rem;
+
+          svg {
+            padding-right: 5px;
+            width: 20px;
+            margin-block: -2px 2px;
+          }
+
+          span {
+            font-size: 1.2rem;
+            display: inline-flex;
+            align-items: center;
+            margin-top: 10px;
+            font-weight: bold;
+          }
+
+          &.price-per-day span {
+            color: $color-green;
+          }
+
+          &.number-of-seats span {
+            color: $color-blue;
+          }
+
+          &.mileage span {
+            color: $color-orange;
+          }
+
+          &.transmission span {
+            color: $color-violet;
+          }
+        }
+      }
+
+      footer {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+
+        h3 {
+          font-weight: bold;
+          font-size: 1.2rem;
+          margin-block: 20px 10px;
+        }
+
+        .feedbacks {
+          display: flex;
+          flex-direction: column;
+
+          .car-feedback {
+            border: 1px solid $color-silver;
+            border-radius: $border-radius-small;
+            padding: 10px;
+            margin-bottom: 10px;
+
+            .author {
+              display: flex;
+              margin-bottom: 10px;
+              font-size: 1.05rem;
+
+              h4 {
+                font-weight: bold;
+              }
+            }
+
+            .text {
+              font-size: 0.95rem;
+            }
+          }
+        }
+
+        .reservations {
+          border: 1px solid $color-silver;
+          border-radius: $border-radius-small;
+          display: flex;
+          flex-direction: column;
+
+          .car-reservation {
+            display: flex;
+            cursor: pointer;
+
+            .no-reservations {
+              width: 100%;
+              border: none !important;
+              text-align: center;
+            }
+
+            &:first-child {
+              border-bottom: 1px solid $color-silver;
+
+              > div {
+                font-size: 1rem;
+              }
+            }
+
+            &:not(:first-child):hover {
+              background: $color-silver !important;
+            }
+            
+            &:not(:first-child):nth-child(2n + 1) {
+              background: $color-white;
+            }
+
+            > div {
+              padding: 10px;
+              width: 50%;
+              font-size: 0.9rem;
+
+              &:first-child {
+                border-right: 1px solid $color-silver;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .forms {
+      max-width: 100%;
+      width: 100%;
+      display: flex;
+      background: $color-default-white;
+      box-sizing: border-box;
+      flex-direction: column;
+
+      .form-container {
+        padding: 20px;
+
+        &:first-child {
+          padding-bottom: 0;
+        }
+
+        textarea {
+          min-height: 125px;
+        }
+
+        .form-group {
+          margin-bottom: 10px;
+        }
+
+        .submit-button {
+          margin-top: 0;
+        }
+      }
+    }
+  }
+
+  .footer {
+    margin-top: 0;
+  }
+}
+
 @media screen and (min-width: $mobile-large-screen) {
 
   .cars {
@@ -362,6 +563,7 @@
 }
 
 @media screen and (min-width: $tablet-screen) {
+
   .cars {
 
     .cars-container {
@@ -399,6 +601,47 @@
   ::-webkit-scrollbar-thumb {
     background: $color-red;
     border-radius: $border-radius-small;
+  }
+
+  .car-details {
+    padding-top: 55px;
+    min-height: calc(100vh - 55px);
+
+    .content {
+      flex-wrap: nowrap;
+
+      .forms {
+        max-width: 40%;
+        overflow-y: auto;
+        height: calc(100vh - 91px);
+      }
+
+      .car-info {
+        max-width: 60%;
+        height: calc(100vh - 91px);
+        overflow-y: auto;
+
+        .car-info-header {
+
+          h3 {
+            margin-block: 30px;
+            font-size: 2rem;
+          }
+        }
+
+        .car-info-content {
+
+          .content-item {
+            font-size: 1.2rem;
+
+            span {
+              font-size: 1.5rem;
+              margin-block: 15px;
+            }
+          }
+        }
+      }
+    }
   }
 
   .cars {

@@ -12,6 +12,7 @@ export type CategoryPropsType = {
 }
 
 export type FeedbackViewType = {
+  id: number | string,
   imagePath: string,
   author: string,
   authorTitle: string,
@@ -26,9 +27,22 @@ export type CategoryViewType = {
 }
 
 export type FeedbacksSectionPropsType = {
+  feedbacksState: [HomePageStateType, React.Dispatch<HomePageStateType>]
   children?: React.ReactElement<typeof Feedback> | React.ReactElement<typeof Feedback>[]
 }
 
 export type CategoriesSectionPropsType = {
   children?: React.ReactElement<typeof Category> | React.ReactElement<typeof Category>[]
+}
+
+export type FeedbackType = {
+  id: number | string,
+  imagePath: string,
+  author: string,
+  authorTitle: string,
+  cite: string
+}
+
+export type HomePageStateType = {
+  feedbacks: FeedbackViewType[]
 }

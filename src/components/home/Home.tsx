@@ -1,4 +1,4 @@
-import {FC} from "react";
+import {FC, useEffect, useState} from "react";
 import '../../styles/home/home.css';
 import {Header} from "./Header";
 import {Footer} from "../application/Footer";
@@ -8,8 +8,26 @@ import {FeedbacksSection} from "./FeedbacksSection";
 import {AboutSection} from "./AboutSection";
 import {Category} from "./Category";
 import {CategoriesSection} from "./CategoriesSection";
+import axios, {AxiosResponse} from "axios";
+import {FeedbackType, FeedbackViewType, HomePageStateType} from "../../types/home/home.types";
+
+const initialState: HomePageStateType = {
+  feedbacks: []
+}
 
 export const Home: FC = () => {
+
+  const [state, setState] = useState(initialState);
+
+  useEffect(() => {
+    axios.get<any, AxiosResponse<FeedbackType[]>>('http://localhost:3001/feedbacks').then(response => {
+      const feedbacks = response.data;
+      setState({
+        ...state,
+        feedbacks: feedbacks.map(feedback => feedback as FeedbackViewType)
+      })
+    })
+  }, [])
 
   return (
     <main className={"home"}>
@@ -71,31 +89,18 @@ export const Home: FC = () => {
         }} />
       </CategoriesSection>
       <AboutSection />
-      <FeedbacksSection>
-        <Feedback data={{
-          imagePath: `${process.env.PUBLIC_URL}/images/coupe.jpg`,
-          author: "Oleksandr Igumnov",
-          authorTitle: "Junior C++ Developer",
-          cite: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-        }} />
-        <Feedback data={{
-          imagePath: `${process.env.PUBLIC_URL}/images/coupe.jpg`,
-          author: "Oleksandr Igumnov",
-          authorTitle: "Junior C++ Developer",
-          cite: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-        }} />
-        <Feedback data={{
-          imagePath: `${process.env.PUBLIC_URL}/images/coupe.jpg`,
-          author: "Oleksandr Igumnov",
-          authorTitle: "Junior C++ Developer",
-          cite: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-        }} />
-        <Feedback data={{
-          imagePath: `${process.env.PUBLIC_URL}/images/coupe.jpg`,
-          author: "Oleksandr Igumnov",
-          authorTitle: "Junior C++ Developer",
-          cite: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-        }} />
+      <FeedbacksSection feedbacksState={[state, setState]}>
+        {
+          state.feedbacks.map(feedback => (
+            <Feedback key={feedback.id} data={{
+              id: feedback.id,
+              imagePath: `${process.env.PUBLIC_URL}/${feedback.imagePath}`,
+              author: feedback.author,
+              authorTitle: feedback.authorTitle,
+              cite: feedback.cite
+            }} />
+          ))
+        }
       </FeedbacksSection>
       <GallerySection />
       <Footer />
