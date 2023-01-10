@@ -14,7 +14,7 @@ export const CarDetails: FC = () => {
   const location = useLocation()
 
   useEffect(() => {
-    axios.get<number, AxiosResponse<CarType>>(`http://localhost:3001${location.pathname}`).then(response => {
+    axios.get<number, AxiosResponse<CarType>>(`https://carleacom.herokuapp.com/api${location.pathname}`).then(response => {
       let car = response.data;
       car.reservations = structuredClone(car.reservations).sort((a: CarReservationType, b: CarReservationType) => {
         if (new Date(a.from).getTime() === new Date(b.from).getTime())

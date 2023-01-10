@@ -305,7 +305,16 @@
       "transmission": "Automatic",
       "addedAt": "2022-07-08T00:00:00",
       "reservations": [],
-      "feedbacks": []
+      "feedbacks": [
+        {
+          "name": "Alex",
+          "feedback": "Feedback"
+        },
+        {
+          "name": "Abobus",
+          "feedback": "Second feedback"
+        }
+      ]
     }
   ],
   "manufacturers": [

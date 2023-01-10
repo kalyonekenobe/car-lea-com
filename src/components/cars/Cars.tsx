@@ -47,7 +47,7 @@ export const Cars: FC = () => {
   useEffect(() => {
     setState({...state, pageIsLoading: true});
     let updatedState: CarsSectionStateType = state;
-    axios.get<any, AxiosResponse<CarManufacturerType[]>>("http://localhost:3001/manufacturers").then(response => {
+    axios.get<any, AxiosResponse<CarManufacturerType[]>>(`https://carleacom.herokuapp.com/api/manufacturers`).then(response => {
       const manufacturers = response.data;
       updatedState = {
         ...updatedState,
@@ -60,7 +60,7 @@ export const Cars: FC = () => {
           }))
         }
       }
-      axios.get<any, AxiosResponse<CarCategoryType[]>>('http://localhost:3001/categories').then(response => {
+      axios.get<any, AxiosResponse<CarCategoryType[]>>(`https://carleacom.herokuapp.com/api/categories`).then(response => {
         const categories = response.data;
         updatedState = {
           ...updatedState,
@@ -73,7 +73,7 @@ export const Cars: FC = () => {
             }))
           }
         }
-        axios.get<any, AxiosResponse<CarType[]>>('http://localhost:3001/cars').then(response => {
+        axios.get<any, AxiosResponse<CarType[]>>(`https://carleacom.herokuapp.com/api/cars`).then(response => {
           let cars = structuredClone(response.data);
           cars = cars.sort((a: CarType, b: CarType) => a.pricePerDay - b.pricePerDay);
           updatedState = {

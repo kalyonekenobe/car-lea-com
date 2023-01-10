@@ -14,7 +14,7 @@ export const ContactForm: FC = () => {
 
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
-    axios.post<ContactFormStateType>('http://localhost:3001/contact-us', state).then(() => {
+    axios.post<ContactFormStateType>(`https://carleacom.herokuapp.com/api/contact-us`, state).then(() => {
       setState(initialState);
     });
   }
