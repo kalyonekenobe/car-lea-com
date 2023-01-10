@@ -1,6 +1,7 @@
 .contacts {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   padding-top: 56px;
   font-family: "Nunito", sans-serif;
   min-height: 100vh;
@@ -26,7 +27,7 @@
     display: flex;
     align-items: stretch;
     flex-wrap: wrap;
-    height: 100%; }
+    min-height: calc(100vh - 93px); }
     .contacts .contacts-container .map-wrapper {
       width: 100%;
       min-height: 500px; }
@@ -50,7 +51,7 @@
         .contacts .contacts-container .form-container .form-item input, .contacts .contacts-container .form-container .form-item textarea {
           border: none !important; }
         .contacts .contacts-container .form-container .form-item textarea {
-          min-height: 235px;
+          min-height: 255px;
           resize: none; }
   .contacts .contact-information {
     color: #EDEDED; }
@@ -78,7 +79,7 @@
         font-size: 1.5rem; }
       .contacts .contact-information li > svg {
         margin-right: 10px; }
-  .contacts footer {
+  .contacts .footer {
     margin-top: 0; }
 
 @media screen and (min-width: 768px) {

@@ -204,6 +204,7 @@
 
   .feedbacks-section {
     padding-inline: 10px;
+    user-select: none;
 
     .feedbacks-container {
       display: flex;
@@ -347,7 +348,7 @@
   }
 }
 
-@media screen and (min-width: 425px) {
+@media screen and (min-width: $mobile-large-screen) {
 
   .home {
 
@@ -375,7 +376,7 @@
   }
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: $tablet-screen) {
 
   .home {
 
@@ -448,7 +449,7 @@
   }
 }
 
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: $laptop-screen) {
 
   .home {
 
@@ -475,7 +476,7 @@
   }
 }
 
-@media screen and (min-width: 1440px) {
+@media screen and (min-width: $laptop-large-screen) {
 
   .home {
 
@@ -544,7 +545,7 @@
   }
 }
 
-@media screen and (max-width: 1439px) {
+@media screen and (max-width: $laptop-large-screen - 1) {
   .feedbacks-section {
 
     .feedbacks-container {
@@ -559,7 +560,7 @@
   }
 }
 
-@media screen and (max-width: 1023px) {
+@media screen and (max-width: $laptop-screen - 1) {
   .feedbacks-section {
 
     .feedbacks-container {
@@ -574,7 +575,7 @@
   }
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: $tablet-screen - 1) {
   .feedbacks-section {
 
     .feedbacks-container {

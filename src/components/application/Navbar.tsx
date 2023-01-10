@@ -4,6 +4,7 @@ import {faBars} from "@fortawesome/free-solid-svg-icons";
 import {Link} from "react-router-dom";
 import {MobileMenu} from "./MobileMenu";
 import {NavbarPropsType, NavbarStateType} from "../../types/application/application.types";
+import {CarsPagePropsType} from "../../types/cars/cars.types";
 
 const initialState: NavbarStateType = {
   mobileMenuIsVisible: false,
@@ -52,15 +53,15 @@ export const Navbar: FC<NavbarPropsType> = props => {
           <div className={"navigation-link-container"}>
             <Link to={"/cars"} replace={true} className={"link"} id={"navigation-cars-link"}>Cars</Link>
             <div className={"submenu cars-submenu"}>
-              <Link to={"/cars/hatchbacks"} replace={true}>Hatchbacks</Link>
-              <Link to={"/cars/sedans"} replace={true}>Sedans</Link>
-              <Link to={"/cars/wagons"} replace={true}>Wagons</Link>
-              <Link to={"/cars/convertibles"} replace={true}>Convertibles</Link>
-              <Link to={"/cars/coupes"} replace={true}>Coupes</Link>
-              <Link to={"/cars/suvs"} replace={true}>SUVs</Link>
-              <Link to={"/cars/pickups"} replace={true}>Pick Ups</Link>
-              <Link to={"/cars/vans"} replace={true}>VANs</Link>
-              <Link to={"/cars/jeeps"} replace={true}>Jeeps</Link>
+              <Link to={"/cars"} state={{category: "hatchbacks"} as CarsPagePropsType} replace={true}>Hatchbacks</Link>
+              <Link to={"/cars"} state={{category: "sedans"} as CarsPagePropsType} replace={true}>Sedans</Link>
+              <Link to={"/cars"} state={{category: "wagons"} as CarsPagePropsType} replace={true}>Wagons</Link>
+              <Link to={"/cars"} state={{category: "convertibles"} as CarsPagePropsType} replace={true}>Convertibles</Link>
+              <Link to={"/cars"} state={{category: "coupes"} as CarsPagePropsType} replace={true}>Coupes</Link>
+              <Link to={"/cars"} state={{category: "suvs"} as CarsPagePropsType} replace={true}>SUVs</Link>
+              <Link to={"/cars"} state={{category: "pickups"} as CarsPagePropsType} replace={true}>Pick Ups</Link>
+              <Link to={"/cars"} state={{category: "vans"} as CarsPagePropsType} replace={true}>VANs</Link>
+              <Link to={"/cars"} state={{category: "jeeps"} as CarsPagePropsType} replace={true}>Jeeps</Link>
             </div>
           </div>
           <span className={"delimiter"} />

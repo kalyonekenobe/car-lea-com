@@ -5,11 +5,17 @@ $color-red: #DA0037;
 $color-white: #EDEDED;
 
 // other colors
+$color-default-white: #FFFFFF;
 $color-silver: #DDDDDD;
 $color-white-blue: #D6E0F0;
 $color-light-red: #FF6464;
 $color-dark-red: #CE1212;
 $color-light-gray: #706C61;
+$color-green: #1FAB89;
+$color-blue: #0F4C75;
+$color-orange: #EA907A;
+$color-brown: #865439;
+$color-violet: #9C254D;
 
 // fonts
 $nunito: 'Nunito', sans-serif;
@@ -21,3 +27,11 @@ $default-font-size: 1rem;
 $border-radius-small: 3px;
 $border-radius-middle: 10px;
 $default-transition: 0.3s ease;
+
+// breakpoints
+$mobile-small-screen: 320px;
+$mobile-medium-screen: 375px;
+$mobile-large-screen: 425px;
+$tablet-screen: 768px;
+$laptop-screen: 1024px;
+$laptop-large-screen: 1440px;

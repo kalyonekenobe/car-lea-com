@@ -140,7 +140,8 @@
       display: block;
       clear: both; }
   .home .feedbacks-section {
-    padding-inline: 10px; }
+    padding-inline: 10px;
+    user-select: none; }
     .home .feedbacks-section .feedbacks-container {
       display: flex;
       justify-content: center; }

@@ -1,0 +1,712 @@
+@import "../application/variables";
+
+.cars {
+  font-family: $nunito;
+  padding-top: 57px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+
+  aside {
+    width: 100%;
+    height: calc(100vh - 57px);
+    position: absolute;
+    z-index: 8;
+    padding: 10px 20px;
+    display: none;
+    flex-direction: column;
+    background: $color-default-white;
+    box-shadow: -5px 0 10px -7px $color-black;
+    box-sizing: border-box;
+    overflow-y: scroll;
+    transition: $default-transition;
+
+    .sidebar-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      padding-bottom: 10px;
+      max-height: 30px;
+      border-bottom: 1px solid $color-silver;
+
+      &.sidebar-section:not(:last-child) {
+        margin-bottom: 15px;
+      }
+
+      h3 {
+        font-size: 1.3rem;
+        font-weight: bold;
+      }
+
+      .close-sidebar-button {
+        display: inline-flex;
+        align-items: center;
+        color: $color-red;
+        font-size: 1.1rem;
+        transition: $default-transition;
+
+        &:hover {
+          color: $color-dark-red;
+        }
+
+        svg {
+          margin-right: 6px;
+        }
+      }
+    }
+
+    .sidebar-section {
+      width: 100%;
+
+      &:not(:last-child) {
+        margin-bottom: 30px;
+      }
+
+      h4 {
+        margin-bottom: 10px;
+        font-weight: bold;
+      }
+    }
+
+    ul {
+
+      li {
+        display: flex;
+        align-items: center;
+        user-select: none;
+
+        label {
+          padding-block: 2px;
+          display: flex;
+          align-items: center;
+          width: 100%;
+
+          .MuiCheckbox-root.Mui-checked {
+            color: $color-red;
+          }
+
+          .MuiCheckbox-root, svg {
+            width: 1.1rem;
+            height: 1.1rem;
+          }
+
+          span {
+            margin-inline: 10px -5px;
+            padding: 0;
+          }
+
+          .MuiFormControlLabel-label {
+            width: 100%;
+          }
+        }
+      }
+    }
+
+    .availability {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      > span {
+
+        .Mui-checked {
+          color: $color-red;
+
+          & + .MuiSwitch-track {
+            background: $color-red;
+          }
+        }
+      }
+
+      h4 {
+        margin-bottom: 0;
+      }
+    }
+
+    .price-per-day {
+
+      .MuiSlider-root {
+        color: $color-red;
+        margin-left: 5px;
+        width: calc(100% - 24px);
+
+        .MuiSlider-thumb:hover {
+          box-shadow: 0 0 0 8px rgba($color-red, 0.16);
+        }
+
+        .MuiSlider-thumb.Mui-active {
+          box-shadow: 0 0 0 14px rgba($color-red, 0.16);
+        }
+
+        .MuiSlider-markLabel {
+          margin-top: -2px;
+          color: $color-black;
+        }
+
+        .MuiSwitch-track {
+          background: $color-red;
+        }
+      }
+    }
+  }
+
+  .cars-container {
+    display: flex;
+    position: relative;
+
+    aside {
+      display: flex;
+    }
+
+    .content-container {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      height: calc(100vh - 93px);
+
+
+      .content-wrapper {
+        height: 100%;
+        overflow-y: auto;
+
+        > .content {
+          padding: 10px;
+          display: grid;
+          grid-template-columns: 1fr;
+          gap: 15px;
+
+          .card {
+            padding: 20px;
+            background: $color-default-white;
+            border-radius: $border-radius-small;
+            box-sizing: border-box;
+            transition: $default-transition;
+            box-shadow: 0 0 10px -5px $color-silver;
+
+            header {
+              margin-bottom: 25px;
+
+              img {
+                width: 100%;
+                height: 180px;
+                object-fit: cover;
+                border-radius: $border-radius-small;
+              }
+
+              h3 {
+                font-weight: bold;
+                margin-block: 15px;
+                font-size: 1.2rem;
+              }
+            }
+
+            .card-content {
+              display: grid;
+              grid-template-columns: repeat(2, 1fr);
+              row-gap: 15px;
+              margin-bottom: 20px;
+
+              .content-item {
+                display: inline-flex;
+                width: 100%;
+                font-size: 1rem;
+
+                svg {
+                  padding-right: 5px;
+                  width: 20px;
+                  margin-block: -2px 2px;
+                }
+
+                span {
+                  font-size: 1.2rem;
+                  display: inline-flex;
+                  align-items: center;
+                  margin-top: 10px;
+                  font-weight: bold;
+                }
+
+                &.price-per-day span {
+                  color: $color-green;
+                }
+
+                &.number-of-seats span {
+                  color: $color-blue;
+                }
+
+                &.mileage span {
+                  color: $color-orange;
+                }
+
+                &.transmission span {
+                  color: $color-violet;
+                }
+              }
+            }
+
+            footer {
+              display: flex;
+              flex-direction: column;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .filters {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 6px 10px;
+    background: $color-default-white;
+    box-sizing: border-box;
+    box-shadow: 0 0 10px -5px $color-black;
+    z-index: 5;
+
+    .filters-item {
+      display: flex;
+      flex-wrap: nowrap;
+      align-items: center;
+      margin-block: 5px;
+
+      &.search-container {
+        max-width: 100%;
+        width: 100%;
+      }
+
+      &.sorting-container:not(:last-child) {
+        max-width: calc(100% - 43px);
+        width: 100%;
+        margin-right: 0;
+
+        .selector {
+          width: 100%;
+        }
+      }
+
+      &.show-filters-container {
+
+        svg {
+          background: $color-default-white;
+          padding: 10px;
+          border-radius: $border-radius-small;
+          cursor: pointer;
+          border: 1px solid $color-silver;
+        }
+      }
+
+      &:not(:last-child) {
+        margin-right: 5px;
+      }
+
+      label {
+        font-weight: bold;
+        margin-right: 10px;
+        white-space: nowrap;
+      }
+
+      input {
+        font-family: $nunito;
+        padding: 7px;
+        width: 100%;
+        outline: none;
+        border: 1px solid $color-silver;
+        border-radius: $border-radius-small;
+        font-size: 1rem;
+      }
+    }
+
+    .selector {
+      min-width: 180px;
+    }
+  }
+
+  .footer {
+    position: relative;
+    margin-top: 0;
+    bottom: 0;
+  }
+}
+
+.car-details {
+  padding-top: 57px;
+  font-family: $nunito;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+  min-height: calc(100vh - 57px);
+
+  .content {
+    display: flex;
+    flex-wrap: wrap;
+
+    .car-info {
+      max-width: 100%;
+      min-width: 320px;
+      padding: 20px;
+      background: $color-default-white;
+      box-sizing: border-box;
+      transition: $default-transition;
+      position: relative;
+      width: 100%;
+
+      .car-info-header {
+        margin-bottom: 25px;
+
+        img {
+          width: 100%;
+          aspect-ratio: 2 / 1;
+          object-fit: cover;
+          border-radius: $border-radius-small;
+        }
+
+        h3 {
+          font-weight: bold;
+          margin-block: 20px;
+          font-size: 1.5rem;
+        }
+      }
+
+      .car-info-content {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        row-gap: 15px;
+        margin-bottom: 20px;
+
+        .content-item {
+          display: inline-flex;
+          width: 100%;
+          font-size: 1rem;
+
+          svg {
+            padding-right: 5px;
+            width: 20px;
+            margin-block: -2px 2px;
+          }
+
+          span {
+            font-size: 1.2rem;
+            display: inline-flex;
+            align-items: center;
+            margin-top: 10px;
+            font-weight: bold;
+          }
+
+          &.price-per-day span {
+            color: $color-green;
+          }
+
+          &.number-of-seats span {
+            color: $color-blue;
+          }
+
+          &.mileage span {
+            color: $color-orange;
+          }
+
+          &.transmission span {
+            color: $color-violet;
+          }
+        }
+      }
+
+      footer {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+
+        h3 {
+          font-weight: bold;
+          font-size: 1.2rem;
+          margin-block: 20px 10px;
+        }
+
+        .feedbacks {
+          display: flex;
+          flex-direction: column;
+
+          .car-feedback {
+            border: 1px solid $color-silver;
+            border-radius: $border-radius-small;
+            padding: 10px;
+            margin-bottom: 10px;
+
+            .author {
+              display: flex;
+              margin-bottom: 10px;
+              font-size: 1.05rem;
+
+              h4 {
+                font-weight: bold;
+              }
+            }
+
+            .text {
+              font-size: 0.95rem;
+            }
+          }
+        }
+
+        .reservations {
+          border: 1px solid $color-silver;
+          border-radius: $border-radius-small;
+          display: flex;
+          flex-direction: column;
+
+          .car-reservation {
+            display: flex;
+            cursor: pointer;
+
+            .no-reservations {
+              width: 100%;
+              border: none !important;
+              text-align: center;
+            }
+
+            &:first-child {
+              border-bottom: 1px solid $color-silver;
+
+              > div {
+                font-size: 1rem;
+              }
+            }
+
+            &:not(:first-child):hover {
+              background: $color-silver !important;
+            }
+            
+            &:not(:first-child):nth-child(2n + 1) {
+              background: $color-white;
+            }
+
+            > div {
+              padding: 10px;
+              width: 50%;
+              font-size: 0.9rem;
+
+              &:first-child {
+                border-right: 1px solid $color-silver;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .forms {
+      max-width: 100%;
+      width: 100%;
+      display: flex;
+      background: $color-default-white;
+      box-sizing: border-box;
+      flex-direction: column;
+
+      .form-container {
+        padding: 20px;
+
+        &:first-child {
+          padding-bottom: 0;
+        }
+
+        textarea {
+          min-height: 125px;
+        }
+
+        .form-group {
+          margin-bottom: 10px;
+        }
+
+        .submit-button {
+          margin-top: 0;
+        }
+      }
+    }
+  }
+
+  .footer {
+    margin-top: 0;
+  }
+}
+
+@media screen and (min-width: $mobile-large-screen) {
+
+  .cars {
+
+    aside {
+      flex-direction: row;
+      flex-wrap: wrap;
+
+      .sidebar-section {
+        width: auto;
+        min-width: 200px;
+      }
+
+      .availability, .price-per-day, .sidebar-header {
+        width: 100%;
+      }
+    }
+
+    .cars-container {
+
+      .content-container {
+
+        .content-wrapper > .content {
+          grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: $tablet-screen) {
+
+  .cars {
+
+    .cars-container {
+
+      .content-container {
+
+        .content-wrapper > .content {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+    }
+
+    .filters {
+      flex-wrap: nowrap;
+
+      .filters-item {
+        margin-block: 0;
+
+        &.sorting-container:not(:last-child) {
+          margin-right: 5px;
+          width: auto;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: $laptop-screen) {
+
+  ::-webkit-scrollbar {
+    width: 3px;
+    background: $color-silver;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: $color-red;
+    border-radius: $border-radius-small;
+  }
+
+  .car-details {
+    padding-top: 55px;
+    min-height: calc(100vh - 55px);
+
+    .content {
+      flex-wrap: nowrap;
+
+      .forms {
+        max-width: 40%;
+        overflow-y: auto;
+        height: calc(100vh - 91px);
+      }
+
+      .car-info {
+        max-width: 60%;
+        height: calc(100vh - 91px);
+        overflow-y: auto;
+
+        .car-info-header {
+
+          h3 {
+            margin-block: 30px;
+            font-size: 2rem;
+          }
+        }
+
+        .car-info-content {
+
+          .content-item {
+            font-size: 1.2rem;
+
+            span {
+              font-size: 1.5rem;
+              margin-block: 15px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .cars {
+    padding-top: 55px;
+
+    .cars-container {
+
+      .content-container {
+        width: calc(100% - 320px);
+        height: calc(100vh - 91px);
+
+        .content-wrapper > .content {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      &.full-screen {
+
+        > .content-container{
+          width: 100%;
+
+          .content-wrapper > .content {
+            grid-template-columns: repeat(3, 1fr);
+          }
+        }
+      }
+    }
+
+    aside {
+      display: flex;
+      flex-direction: column;
+      width: 320px;
+      position: relative;
+      flex-wrap: nowrap;
+      height: calc(100vh - 91px);
+
+      .sidebar-section.sidebar-header {
+        display: none;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: $laptop-large-screen) {
+
+  .cars {
+
+    .cars-container {
+
+      .content-container {
+
+        .content-wrapper > .content {
+          grid-template-columns: repeat(4, 1fr);
+        }
+      }
+
+      &.full-screen {
+
+        .content-container {
+
+          .content-wrapper > .content {
+            grid-template-columns: repeat(5, 1fr);
+          }
+        }
+      }
+    }
+  }
+}

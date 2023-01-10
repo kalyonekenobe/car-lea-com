@@ -79,8 +79,6 @@ body {
       flex-direction: column;
       padding: 30px 10px;
 
-
-
       a {
         padding: 15px 10px;
         margin-block: 2px;
@@ -318,7 +316,7 @@ body {
     }
   }
 
-  footer {
+  .footer {
     margin-top: 30px;
     background: $color-black;
     display: flex;
@@ -326,7 +324,7 @@ body {
     align-items: center;
     color: $color-white;
     text-align: center;
-    padding: 20px;
+    padding: 10px;
     position: relative;
     bottom: 0;
   }
@@ -339,6 +337,15 @@ body {
     font-size: 1.5rem;
     text-align: center;
     margin-bottom: 20px;
+  }
+
+  .error-input {
+    border: 1px solid $color-red !important;
+  }
+
+  .error {
+    margin-top: 5px;
+    color: $color-red;
   }
 
   form {
@@ -386,7 +393,114 @@ body {
   }
 }
 
-@media screen and (min-width: 1024px) {
+.pagination {
+  background: $color-default-white;
+  box-shadow: 0 0 10px -5px $color-black;
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+
+  .button-list {
+
+    span {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      padding: 10px;
+      background: $color-default-white;
+      color: $color-black;
+      border-radius: $border-radius-small;
+      cursor: pointer;
+      text-align: center;
+      width: 16px;
+      height: 16px;
+      user-select: none;
+
+      &.active {
+        color: $color-red;
+        background: $color-silver;
+      }
+
+      &:hover {
+        color: $color-red;
+      }
+
+      &:not(:last-child) {
+        margin-right: 5px;
+      }
+    }
+  }
+
+}
+
+.selector {
+  border-radius: $border-radius-small;
+  cursor: pointer;
+  background: $color-default-white;
+  border: 1px solid $color-silver;
+  user-select: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+
+  > span {
+    width: 100%;
+    padding: 10px;
+    position: relative;
+    z-index: 2;
+  }
+
+  svg.sort-down-icon {
+    margin-top: -3px;
+    margin-bottom: 3px;
+    position: absolute;
+    right: 10px;
+    z-index: 1;
+  }
+
+  .option-list {
+    padding: 5px;
+    position: absolute;
+    top: calc(100% + 5px);
+    left: 0;
+    border-radius: $border-radius-small;
+    background: $color-default-white;
+    border: 1px solid $color-silver;
+    width: 100%;
+    box-sizing: border-box;
+
+    > div {
+      padding: 5px;
+      border-radius: $border-radius-small;
+      transition: $default-transition;
+
+      &:hover {
+        background: $color-silver;
+        color: $color-red;
+      }
+    }
+  }
+}
+
+.loading-page {
+  margin: auto auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+
+  img {
+    min-width: 32px;
+    max-width: 64px;
+    width: 25%;
+  }
+}
+
+@media screen and (min-width: $laptop-screen) {
 
   .application {
 

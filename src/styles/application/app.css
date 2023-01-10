@@ -215,7 +215,7 @@ body {
     .application .navigation-container .show-burger-menu:hover {
       color: #171717;
       background: #EDEDED; }
-.application footer {
+.application .footer {
   margin-top: 30px;
   background: #171717;
   display: flex;
@@ -223,7 +223,7 @@ body {
   align-items: center;
   color: #EDEDED;
   text-align: center;
-  padding: 20px;
+  padding: 10px;
   position: relative;
   bottom: 0; }
 
@@ -232,6 +232,11 @@ body {
   font-size: 1.5rem;
   text-align: center;
   margin-bottom: 20px; }
+.form-container .error-input {
+  border: 1px solid #DA0037 !important; }
+.form-container .error {
+  margin-top: 5px;
+  color: #DA0037; }
 .form-container form .form-group {
   display: flex; }
   .form-container form .form-group .form-item {
@@ -261,6 +266,86 @@ body {
       border: none !important;
       margin-top: 15px;
       font-size: 1.1rem !important; }
+
+.pagination {
+  background: #FFFFFF;
+  box-shadow: 0 0 10px -5px #171717;
+  padding: 5px;
+  display: flex;
+  justify-content: center; }
+  .pagination .button-list span {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    background: #FFFFFF;
+    color: #171717;
+    border-radius: 3px;
+    cursor: pointer;
+    text-align: center;
+    width: 16px;
+    height: 16px;
+    user-select: none; }
+    .pagination .button-list span.active {
+      color: #DA0037;
+      background: #DDDDDD; }
+    .pagination .button-list span:hover {
+      color: #DA0037; }
+    .pagination .button-list span:not(:last-child) {
+      margin-right: 5px; }
+
+.selector {
+  border-radius: 3px;
+  cursor: pointer;
+  background: #FFFFFF;
+  border: 1px solid #DDDDDD;
+  user-select: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative; }
+  .selector > span {
+    width: 100%;
+    padding: 10px;
+    position: relative;
+    z-index: 2; }
+  .selector svg.sort-down-icon {
+    margin-top: -3px;
+    margin-bottom: 3px;
+    position: absolute;
+    right: 10px;
+    z-index: 1; }
+  .selector .option-list {
+    padding: 5px;
+    position: absolute;
+    top: calc(100% + 5px);
+    left: 0;
+    border-radius: 3px;
+    background: #FFFFFF;
+    border: 1px solid #DDDDDD;
+    width: 100%;
+    box-sizing: border-box; }
+    .selector .option-list > div {
+      padding: 5px;
+      border-radius: 3px;
+      transition: 0.3s ease; }
+      .selector .option-list > div:hover {
+        background: #DDDDDD;
+        color: #DA0037; }
+
+.loading-page {
+  margin: auto auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box; }
+  .loading-page img {
+    min-width: 32px;
+    max-width: 64px;
+    width: 25%; }
 
 @media screen and (min-width: 1024px) {
   .application .navigation-container .link-group .navigation {

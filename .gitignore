@@ -6,7 +6,7 @@
 **.idea/**
 package-lock.json
 .pnp.js
-styles/.sass-cache/
+**.sass-cache/**
 
 # testing
 /coverage
