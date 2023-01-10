@@ -17,6 +17,7 @@ export const Navbar: FC<NavbarPropsType> = props => {
   const [state, setState] = useState(initialState);
 
   useEffect(() => {
+    document.body.style.overflow = 'auto';
     window.addEventListener('scroll', () => handleScroll());
     handleScroll();
   }, [])

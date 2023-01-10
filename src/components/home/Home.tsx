@@ -20,7 +20,7 @@ export const Home: FC = () => {
   const [state, setState] = useState(initialState);
 
   useEffect(() => {
-    axios.get<any, AxiosResponse<FeedbackType[]>>(`https://carleacom.herokuapp.com/api/feedbacks`).then(response => {
+    axios.get<any, AxiosResponse<FeedbackType[]>>(`https://carleacom.herokuapp.com/feedbacks`).then(response => {
       const feedbacks = response.data;
       setState({
         ...state,
