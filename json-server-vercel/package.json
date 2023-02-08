@@ -1,15 +1,13 @@
 {
-  "name": "template-json-server",
+  "name": "json-server-vercel",
   "version": "1.0.0",
-  "description": "Template for creating a backend using JSON Server",
+  "description": "Deploy JSON Server to Vercel",
   "main": "server.js",
-  "license": "MIT",
   "scripts": {
     "dev": "NODE_ENV=development node server.js",
     "start": "NODE_ENV=production node server.js"
   },
   "dependencies": {
-    "clone": "^2.1.2",
-    "json-server": "^0.17.1"
+    "json-server": "^0.17.0"
   }
 }
