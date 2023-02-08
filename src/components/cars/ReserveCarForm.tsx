@@ -48,7 +48,7 @@ export const ReserveCarForm: FC<ReserveCarFormPropsType> = props => {
       }
       if (formErrors.length === 0) {
         car.reservations.push(state.data)
-        axios.put<CarType>(`https://carleacom.herokuapp.com${location.pathname}`, car).then(() => {
+        axios.put<CarType>(`${process.env.REACT_APP_SERVER_NAME}${location.pathname}`, car).then(() => {
           setState(initialState)
         })
       } else {

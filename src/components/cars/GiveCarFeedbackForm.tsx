@@ -21,7 +21,7 @@ export const GiveCarFeedbackForm: FC<GiveCarFeedbackFormPropsType> = props => {
     let {car} = props;
     if (car) {
       car.feedbacks.push(state.data);
-      axios.put<CarType>(`https://carleacom.herokuapp.com${location.pathname}`, car).then(() => {
+      axios.put<CarType>(`${process.env.REACT_APP_SERVER_NAME}${location.pathname}`, car).then(() => {
         setState(initialState)
       })
     }
